@@ -83,12 +83,14 @@ function positionRevealMarkers(question, guessValue, crowdAverageGuess) {
   let crowdPct = valueToSliderPosition(question, crowdAverageGuess, 100);
   // The crowd marker only needs to dodge guess/actual (which may themselves overlap by
   // design) — a bullseye guess/actual pair shouldn't get pried apart just because the
-  // crowd marker also wants space nearby.
+  // crowd marker also wants space nearby. Same near-exact exception as above: if the
+  // crowd average lands on (or right next to) your guess or the actual answer, that's a
+  // genuinely interesting coincidence worth showing as a real overlap, not a smear.
   for (let iter = 0; iter < 4; iter++) {
     let moved = false;
     for (const other of [guessPct, actualPct]) {
       const crowdGap = crowdPct - other;
-      if (Math.abs(crowdGap) < MIN_MARKER_GAP_PCT) {
+      if (Math.abs(crowdGap) >= NEAR_EXACT_GAP_PCT && Math.abs(crowdGap) < MIN_MARKER_GAP_PCT) {
         crowdPct = other + Math.sign(crowdGap || 1) * MIN_MARKER_GAP_PCT;
         moved = true;
       }
@@ -107,16 +109,24 @@ function placeMarker(markerEl, pct) {
   else if (pct > 100 - EDGE_ZONE_PCT) markerEl.classList.add("edge-high");
 }
 
+// Spells out the actual arithmetic behind the score shown above it — half accuracy,
+// half vs. the crowd, averaged together, with a plain note when a power-up capped it —
+// rather than leaving the player to take the number on faith.
 function sublineFor(guessRecord) {
+  let basis;
   if (guessRecord.crowdReason === "ok") {
-    return `Accuracy ${guessRecord.accuracyScore} · Beat ${guessRecord.percentile}% of players today`;
+    basis = `${guessRecord.accuracyScore} accuracy + ${guessRecord.percentile} vs. crowd, averaged`;
+  } else if (guessRecord.crowdReason === "insufficient") {
+    basis = `${guessRecord.accuracyScore} accuracy only — not enough players yet`;
+  } else {
+    // "unavailable": the comparison genuinely couldn't be confirmed (offline, unconfigured,
+    // timed out) — never claim "not enough players" here, since that's a specific, false claim.
+    basis = `${guessRecord.accuracyScore} accuracy only this time`;
   }
-  if (guessRecord.crowdReason === "insufficient") {
-    return "Not enough players yet — scored on accuracy alone.";
-  }
-  // "unavailable": the comparison genuinely couldn't be confirmed (offline, unconfigured,
-  // timed out) — never claim "not enough players" here, since that's a specific, false claim.
-  return "Scored on accuracy alone this time.";
+
+  if (guessRecord.powerUpsUsed.length === 0) return basis;
+  const cap = 100 - 10 * guessRecord.powerUpsUsed.length;
+  return `${basis} · capped at ${cap} for using a power-up`;
 }
 
 function renderProgressDots(total, currentIndex, completedCount) {
