@@ -1,0 +1,53 @@
+// Scoring and log/linear slider math live together because both need to agree on
+// what "distance" means for a given question's scale.
+
+const LOG_FLOOR = 1e-6; // used only when a log-scale question's min is <= 0, which validation disallows anyway
+
+export function questionBounds(question) {
+  if (question.scale === "log") {
+    const lo = Math.log10(question.min > 0 ? question.min : LOG_FLOOR);
+    const hi = Math.log10(question.max);
+    return { lo, hi };
+  }
+  return { lo: question.min, hi: question.max };
+}
+
+// Maps a slider's raw 0..sliderMax position to a real-world value for the question.
+export function sliderPositionToValue(question, position, sliderMax) {
+  const t = position / sliderMax;
+  const { lo, hi } = questionBounds(question);
+  const v = lo + t * (hi - lo);
+  return question.scale === "log" ? Math.pow(10, v) : v;
+}
+
+// Inverse of the above — used to place the "actual answer" marker on the track.
+export function valueToSliderPosition(question, value, sliderMax) {
+  const { lo, hi } = questionBounds(question);
+  const v = question.scale === "log" ? Math.log10(Math.max(value, question.min > 0 ? question.min : LOG_FLOOR)) : value;
+  const t = (v - lo) / (hi - lo);
+  return Math.round(Math.min(1, Math.max(0, t)) * sliderMax);
+}
+
+// 0-100 per question, based on normalized distance on the question's own scale.
+export function scoreQuestion(question, guess) {
+  const { lo, hi } = questionBounds(question);
+  const g = question.scale === "log" ? Math.log10(Math.max(guess, question.min > 0 ? question.min : LOG_FLOOR)) : guess;
+  const a = question.scale === "log" ? Math.log10(question.answer) : question.answer;
+  const dist = Math.abs(g - a) / (hi - lo);
+  return Math.round(Math.max(0, 100 * (1 - dist)));
+}
+
+export function tierForScore(totalScore) {
+  if (totalScore >= 450) return "Reality Master";
+  if (totalScore >= 350) return "Sharp Eye";
+  if (totalScore >= 250) return "Well Calibrated";
+  if (totalScore >= 150) return "Getting There";
+  return "Keep Guessing";
+}
+
+export function emojiForQuestionScore(score) {
+  if (score >= 90) return "🟩";
+  if (score >= 70) return "🟨";
+  if (score >= 40) return "🟧";
+  return "🟥";
+}

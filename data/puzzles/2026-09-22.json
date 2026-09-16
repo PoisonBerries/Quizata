@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-22",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "fertility",
+      "prompt": "What was the average global total fertility rate (births per woman) in 2023?",
+      "unit": "births per woman",
+      "scale": "linear",
+      "min": 0,
+      "max": 6,
+      "answer": 2.2,
+      "source": { "name": "World Bank", "url": "https://data.worldbank.org/indicator/SP.DYN.TFRT.IN", "asOf": "2023" },
+      "insight": "World fertility has fallen from about 5 births per woman in 1960 to near the 2.1 replacement level today."
+    },
+    {
+      "id": "q2",
+      "category": "migration",
+      "prompt": "As of 2020, what percentage of the world's population were international migrants (people living outside their country of birth)?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 20,
+      "answer": 3.6,
+      "source": { "name": "UN DESA Population Division", "url": "https://www.un.org/en/desa/international-migration-2020-highlights", "asOf": "2020" },
+      "insight": "Despite migration's high public profile, international migrants remain a small share of humanity — roughly 1 in 28 people."
+    },
+    {
+      "id": "q3",
+      "category": "environment",
+      "prompt": "On average, how many million hectares of forest are cleared globally each year, based on the most recent five-year period (2015-2020)?",
+      "unit": "million hectares/year",
+      "scale": "linear",
+      "min": 0,
+      "max": 30,
+      "answer": 10,
+      "source": { "name": "FAO, Global Forest Resources Assessment 2020", "url": "https://www.fao.org/interactive/forest-resources-assessment/2020/en", "asOf": "2015-2020" },
+      "insight": "Annual deforestation has fallen for three straight decades, from about 16 million hectares/year in the 1990s to roughly 10 million today."
+    },
+    {
+      "id": "q4",
+      "category": "environment",
+      "prompt": "What was the average CO2 emissions per person worldwide in 2023, in tonnes?",
+      "unit": "tonnes CO2/person",
+      "scale": "linear",
+      "min": 0,
+      "max": 20,
+      "answer": 4.7,
+      "source": { "name": "Global Carbon Project (via Our World in Data)", "url": "https://ourworldindata.org/grapher/co-emissions-per-capita", "asOf": "2023" },
+      "insight": "Global per-capita CO2 emissions have stayed just below 5 tonnes for over a decade, masking huge gaps between high- and low-emitting countries."
+    },
+    {
+      "id": "q5",
+      "category": "technology",
+      "prompt": "What percentage of the world's population used the internet in 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 68,
+      "source": { "name": "ITU (International Telecommunication Union)", "url": "https://www.itu.int/en/mediacentre/Pages/PR-2024-11-27-facts-and-figures.aspx", "asOf": "2024" },
+      "insight": "5.5 billion people are now online, but 2.6 billion people, mostly in low-income countries, still lack internet access."
+    }
+  ]
+}

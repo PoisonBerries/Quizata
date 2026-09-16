@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-18",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "health",
+      "prompt": "In 2023, out of every 1,000 children born worldwide, how many died before reaching their 5th birthday?",
+      "unit": "per 1,000 live births",
+      "scale": "linear",
+      "min": 0,
+      "max": 150,
+      "answer": 38.3,
+      "source": { "name": "World Bank (World Development Indicators)", "url": "https://data.worldbank.org/indicator/SH.DYN.MORT?locations=1W", "asOf": "2023" },
+      "insight": "Down from roughly 216 per 1,000 in 1950, global child mortality has fallen far faster than most people assume."
+    },
+    {
+      "id": "q2",
+      "category": "energy",
+      "prompt": "What percentage of the world's electricity was generated from low-carbon sources (renewables plus nuclear combined) in 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 40.9,
+      "source": { "name": "Ember, Global Electricity Review 2025", "url": "https://ember-energy.org/latest-insights/global-electricity-review-2025/", "asOf": "2024" },
+      "insight": "Low-carbon power passed 40% of global electricity in 2024, the first time since the 1940s — many assume fossil fuels still dominate."
+    },
+    {
+      "id": "q3",
+      "category": "economy",
+      "prompt": "What share of global pre-tax income was earned by the world's richest 1% of individuals in 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 20.7,
+      "source": { "name": "World Inequality Database (via Our World in Data)", "url": "https://ourworldindata.org/grapher/income-share-top-1-before-tax-wid", "asOf": "2024" },
+      "insight": "The top 1% income share has climbed since 1980 but is still well below the roughly 25-30% levels seen in the early 20th century."
+    },
+    {
+      "id": "q4",
+      "category": "population",
+      "prompt": "As of 2025, how many billion people are alive on Earth?",
+      "unit": "billion people",
+      "scale": "log",
+      "min": 0.5,
+      "max": 20,
+      "answer": 8.2,
+      "source": { "name": "UN Population Division (UNFPA)", "url": "https://www.unfpa.org/data/world-population/WORLD", "asOf": "2025" },
+      "insight": "World population passed 8 billion in 2022 and is projected to peak around 10.3 billion in the 2080s before gradually declining."
+    },
+    {
+      "id": "q5",
+      "category": "environment",
+      "prompt": "What percentage of the world's plastic waste was actually recycled in 2019, after accounting for losses in the recycling process?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 9,
+      "source": { "name": "OECD, Global Plastics Outlook", "url": "https://www.oecd.org/en/about/news/press-releases/2022/02/plastic-pollution-is-growing-relentlessly-as-waste-management-and-recycling-fall-short.html", "asOf": "2019" },
+      "insight": "Only about 9% of plastic waste worldwide is actually recycled; roughly half ends up landfilled and 22% is mismanaged or leaked into nature."
+    }
+  ]
+}

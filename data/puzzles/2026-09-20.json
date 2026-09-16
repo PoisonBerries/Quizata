@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-20",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "health",
+      "prompt": "As of 2023, how many women die from pregnancy- or childbirth-related causes for every 100,000 live births, worldwide?",
+      "unit": "per 100,000 live births",
+      "scale": "linear",
+      "min": 0,
+      "max": 500,
+      "answer": 197,
+      "source": { "name": "WHO, UNICEF, UNFPA, World Bank Group, UNDESA", "url": "https://www.who.int/news-room/fact-sheets/detail/maternal-mortality", "asOf": "2023" },
+      "insight": "The global maternal mortality ratio has fallen by more than 40% since 2000, though it remains far higher in some regions than others."
+    },
+    {
+      "id": "q2",
+      "category": "environment",
+      "prompt": "As of 2024, what percentage of the world's ocean and coastal area is within officially documented protected or conserved areas?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 8.4,
+      "source": { "name": "UNEP-WCMC & IUCN, Protected Planet Report 2024", "url": "https://digitalreport.protectedplanet.net/", "asOf": "2024" },
+      "insight": "Only about 8% of the ocean is formally protected, and just a fraction of that is effectively managed, far short of the 2030 target."
+    },
+    {
+      "id": "q3",
+      "category": "economy",
+      "prompt": "In 2023, on average, what percentage of GDP did the world's governments spend on education?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 10,
+      "answer": 3.6,
+      "source": { "name": "World Bank", "url": "https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS", "asOf": "2023" },
+      "insight": "Global education spending has slipped from a 2020 peak of about 4.3% of GDP to 3.6%, below UNESCO's recommended 4-6% benchmark."
+    },
+    {
+      "id": "q4",
+      "category": "youth",
+      "prompt": "As of 2023, what percentage of the world's population is under age 15?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 45,
+      "answer": 25.0,
+      "source": { "name": "World Bank (World Development Indicators)", "url": "https://data.worldbank.org/indicator/SP.POP.0014.TO.ZS?locations=1W", "asOf": "2023" },
+      "insight": "Children under 15 made up about 37% of humanity in 1970; falling birth rates have brought that down to roughly a quarter today."
+    },
+    {
+      "id": "q5",
+      "category": "energy",
+      "prompt": "What share of new cars sold worldwide in 2024 were electric (battery-electric plus plug-in hybrid)?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 20,
+      "source": { "name": "IEA, Global EV Outlook 2025", "url": "https://www.iea.org/reports/global-ev-outlook-2025/executive-summary", "asOf": "2024" },
+      "insight": "More than 1 in 5 new cars sold globally in 2024 was electric, up from under 5% just five years earlier."
+    }
+  ]
+}

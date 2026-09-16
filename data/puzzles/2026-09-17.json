@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-17",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "health",
+      "prompt": "As of 2023, what was the average global life expectancy at birth?",
+      "unit": "years",
+      "scale": "linear",
+      "min": 40,
+      "max": 90,
+      "answer": 73.3,
+      "source": { "name": "World Bank", "url": "https://data.worldbank.org/indicator/SP.DYN.LE00.IN", "asOf": "2023" },
+      "insight": "Global life expectancy has climbed from about 47 years in 1950 to over 73 years today, despite a dip during the pandemic."
+    },
+    {
+      "id": "q2",
+      "category": "environment",
+      "prompt": "What percentage of the world's total land area is currently covered by forest?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 31,
+      "source": { "name": "FAO, Global Forest Resources Assessment 2020", "url": "https://www.fao.org/interactive/forest-resources-assessment/2020/en", "asOf": "2020" },
+      "insight": "Despite widespread deforestation concerns, forests still blanket roughly one-third of Earth's land surface."
+    },
+    {
+      "id": "q3",
+      "category": "economy",
+      "prompt": "What was the world's total nominal GDP (all countries combined, current US dollars) in 2025?",
+      "unit": "trillion dollars",
+      "scale": "linear",
+      "min": 0,
+      "max": 200,
+      "answer": 118.2,
+      "source": { "name": "IMF World Economic Outlook Database", "url": "https://www.imf.org/external/datamapper/NGDPD@WEO/WEOWORLD", "asOf": "2025" },
+      "insight": "World GDP has more than tripled since 2000, with the US and China alone now generating over 40% of global output."
+    },
+    {
+      "id": "q4",
+      "category": "technology",
+      "prompt": "In 2024, how many mobile-cellular subscriptions were there per 100 people worldwide?",
+      "unit": "subscriptions per 100 people",
+      "scale": "linear",
+      "min": 0,
+      "max": 150,
+      "answer": 112,
+      "source": { "name": "ITU (International Telecommunication Union)", "url": "https://www.itu.int/itu-d/reports/statistics/2024/11/10/ff24-subscriptions/", "asOf": "2024" },
+      "insight": "There are more mobile-cellular subscriptions worldwide than people, since many people hold multiple SIM cards."
+    },
+    {
+      "id": "q5",
+      "category": "urbanization",
+      "prompt": "What share of the world's population lived in urban areas in 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 57.6,
+      "source": { "name": "World Bank", "url": "https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS", "asOf": "2024" },
+      "insight": "Humanity only became majority-urban around 2007; the urban share keeps rising each year."
+    }
+  ]
+}

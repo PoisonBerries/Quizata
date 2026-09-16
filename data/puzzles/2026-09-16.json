@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-16",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "infrastructure",
+      "prompt": "What share of the world's population had access to electricity, as of 2023?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 92,
+      "source": {
+        "name": "World Bank",
+        "url": "https://datacatalog.worldbank.org/indicator/0d652c4f-e1ce-eb11-bacc-000d3a596ff0/access-to-electricity-of-population",
+        "asOf": "2023"
+      },
+      "insight": "Global electricity access has climbed from 71% in 1990 to 92% in 2023, even as a 2022 energy-price shock briefly stalled progress."
+    },
+    {
+      "id": "q2",
+      "category": "economy",
+      "prompt": "What share of the world's population lived in extreme poverty (on less than $3 a day), as of 2022?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 8.5,
+      "source": {
+        "name": "World Bank (via Our World in Data)",
+        "url": "https://ourworldindata.org/poverty",
+        "asOf": "2022"
+      },
+      "insight": "About 700 million people live in extreme poverty today — a huge number, but down from roughly 2 billion in 1990, even as world population grew."
+    },
+    {
+      "id": "q3",
+      "category": "technology",
+      "prompt": "How many billion people worldwide were using the internet, as of 2023?",
+      "unit": "billion people",
+      "scale": "log",
+      "min": 0.5,
+      "max": 10,
+      "answer": 5.4,
+      "source": {
+        "name": "ITU",
+        "url": "https://www.itu.int/itu-d/reports/statistics/2023/10/10/ff23-internet-use/",
+        "asOf": "2023"
+      },
+      "insight": "5.4 billion people were online in 2023 — about 67% of humanity — but usage in low-income countries still trailed far behind, at 27%."
+    },
+    {
+      "id": "q4",
+      "category": "education",
+      "prompt": "What share of the world's adults (age 15+) could read and write, as of 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 88,
+      "source": {
+        "name": "UNESCO",
+        "url": "https://www.unesco.org/en/literacy/need-know",
+        "asOf": "2024"
+      },
+      "insight": "Global adult literacy has risen from 65% in 1975 to 88% today, even as the world's adult population more than doubled."
+    },
+    {
+      "id": "q5",
+      "category": "energy",
+      "prompt": "What share of the world's electricity came from renewable sources, as of 2022?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 29,
+      "source": {
+        "name": "IEA",
+        "url": "https://www.iea.org/reports/renewables-2023/executive-summary",
+        "asOf": "2022"
+      },
+      "insight": "Renewables passed 29% of global electricity generation in 2022 and were projected by the IEA to reach 35% by 2025."
+    }
+  ]
+}

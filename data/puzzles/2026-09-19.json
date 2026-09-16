@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-19",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "health",
+      "prompt": "As of 2025, what percentage of one-year-old children worldwide have received 3 doses of the DTP (diphtheria-tetanus-pertussis) vaccine?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 85,
+      "source": { "name": "World Health Organization", "url": "https://www.who.int/news-room/fact-sheets/detail/immunization-coverage", "asOf": "2025" },
+      "insight": "Despite pandemic-era setbacks and persistent gaps in poorer regions, the large majority of the world's infants are now fully DTP-vaccinated."
+    },
+    {
+      "id": "q2",
+      "category": "environment",
+      "prompt": "As of 2024, what percentage of the world's land and inland water area is within officially documented protected or conserved areas?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 17.6,
+      "source": { "name": "UNEP-WCMC & IUCN, Protected Planet Report 2024", "url": "https://digitalreport.protectedplanet.net/", "asOf": "2024" },
+      "insight": "Protected land has grown steadily but sits well below the global '30 by 30' target of protecting 30% of Earth's land by 2030."
+    },
+    {
+      "id": "q3",
+      "category": "technology",
+      "prompt": "As of 2025, how many objects (mostly satellites) have been launched into outer space in total since Sputnik 1 in 1957?",
+      "unit": "objects launched",
+      "scale": "log",
+      "min": 100,
+      "max": 100000,
+      "answer": 24865,
+      "source": { "name": "Our World in Data (sourced from UNOOSA)", "url": "https://ourworldindata.org/grapher/cumulative-number-of-objects-launched-into-outer-space", "asOf": "2025" },
+      "insight": "Roughly a fifth of all objects ever launched into space went up in just the last two years, driven by satellite mega-constellations."
+    },
+    {
+      "id": "q4",
+      "category": "aging",
+      "prompt": "As of 2023, what percentage of the world's population is age 65 or older?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 30,
+      "answer": 10.0,
+      "source": { "name": "World Bank (World Development Indicators)", "url": "https://data.worldbank.org/indicator/SP.POP.65UP.TO.ZS?locations=1W", "asOf": "2023" },
+      "insight": "The share of people aged 65+ has roughly doubled since 1960 and keeps rising as birth rates fall and lifespans lengthen."
+    },
+    {
+      "id": "q5",
+      "category": "energy",
+      "prompt": "What percentage of the world's total energy demand (not just electricity, but also transport, heating, and industry) was met by fossil fuels in 2023?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 80,
+      "source": { "name": "IEA, World Energy Outlook 2024", "url": "https://www.iea.org/reports/world-energy-outlook-2024/executive-summary", "asOf": "2023" },
+      "insight": "Clean electricity is growing fast, but fossil fuels still met about 80% of the world's total energy demand in 2023."
+    }
+  ]
+}

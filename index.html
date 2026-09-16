@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Quizata — Guess the number, learn the world</title>
+  <meta name="description" content="Five real, cited statistics a day. Guess each one on a slider and see how close your sense of the world really is." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Quizata" />
+  <meta property="og:description" content="Five real, cited statistics a day. How close is your sense of the world?" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="index.html">Quiz<span class="dot">a</span>ta</a>
+    <div class="streak-badge" id="streak-badge" hidden>
+      <span aria-hidden="true">🔥</span> <span id="streak-count">0</span> day streak
+    </div>
+  </header>
+
+  <main id="app">
+    <section id="intro-screen" class="card stack fade-in">
+      <div>
+        <p class="tagline">Five real statistics. One slider each. Zero multiple choice.</p>
+        <p>Every stat is real, dated, and linked to its source — chosen because people's gut sense of it is usually off in an interesting way.</p>
+      </div>
+      <div class="meta-row">
+        <span class="pill" id="puzzle-label">Quizata #1</span>
+        <span class="pill" id="date-label"></span>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="start-btn">Play today's Quizata</button>
+        <a class="btn btn-secondary" href="about.html">How it works</a>
+      </div>
+    </section>
+
+    <section id="already-played-screen" class="card stack fade-in" hidden>
+      <h2>You've already played today.</h2>
+      <p>Come back tomorrow for five new statistics — or revisit today's results below.</p>
+      <div class="btn-row">
+        <button class="btn" id="view-results-btn">See today's results</button>
+      </div>
+    </section>
+
+    <section id="game-screen" class="card stack fade-in" hidden>
+      <div class="progress-dots" id="progress-dots" aria-hidden="true"></div>
+      <div>
+        <p class="category-tag" id="q-category"></p>
+        <h2 class="prompt-text" id="q-prompt"></h2>
+      </div>
+      <div class="value-readout" id="q-readout"></div>
+      <div class="slider-wrap">
+        <input type="range" id="q-slider" min="0" max="1000" step="1" aria-label="Your guess" />
+        <div class="range-labels">
+          <span id="q-min-label"></span>
+          <span id="q-max-label"></span>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="lock-guess-btn">Lock in guess</button>
+      </div>
+    </section>
+
+    <section id="reveal-screen" class="card stack fade-in" hidden>
+      <div>
+        <p class="category-tag" id="r-category"></p>
+        <h2 class="prompt-text" id="r-prompt"></h2>
+      </div>
+      <div class="reveal-track" id="r-track">
+        <div class="reveal-marker guess" id="r-guess-marker">
+          <span class="label" id="r-guess-label"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="reveal-marker actual" id="r-actual-marker">
+          <span class="dot"></span>
+          <span class="label" id="r-actual-label"></span>
+        </div>
+      </div>
+      <div class="reveal-score"><span class="emoji" id="r-emoji"></span><span id="r-score"></span>/100</div>
+      <p class="insight" id="r-insight"></p>
+      <p class="source-line">Source: <a id="r-source-link" target="_blank" rel="noopener noreferrer"></a></p>
+      <div class="btn-row">
+        <button class="btn" id="next-question-btn">Next</button>
+      </div>
+    </section>
+
+    <section id="summary-screen" class="card stack fade-in" hidden>
+      <p class="score-total"><span id="s-total"></span><span style="font-size: 0.45em; color: var(--text-muted);">/500</span></p>
+      <p class="tier-badge" id="s-tier"></p>
+      <ul class="breakdown-list" id="s-breakdown"></ul>
+      <div class="stats-row">
+        <div class="stat"><span class="num" id="s-streak">0</span><span class="lbl">Streak</span></div>
+        <div class="stat"><span class="num" id="s-played">0</span><span class="lbl">Played</span></div>
+        <div class="stat"><span class="num" id="s-avg">0</span><span class="lbl">Avg score</span></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="share-btn">Share result</button>
+        <a class="btn btn-secondary" href="about.html">Why these stats?</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Quizata helps you calibrate your sense of the world, five numbers at a time. <a href="about.html">About &amp; sourcing</a>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

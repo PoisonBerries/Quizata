@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-21",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "health",
+      "prompt": "As of 2025, what percentage of children worldwide received at least one dose of measles-containing vaccine by their first birthday?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 84,
+      "source": { "name": "World Health Organization", "url": "https://www.who.int/news-room/fact-sheets/detail/immunization-coverage", "asOf": "2025" },
+      "insight": "Coverage has plateaued short of the roughly 95% needed for herd immunity, a gap linked to recent measles outbreaks."
+    },
+    {
+      "id": "q2",
+      "category": "environment",
+      "prompt": "Of all species that have been formally assessed on the IUCN Red List, what percentage are classified as threatened with extinction?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 28,
+      "source": { "name": "IUCN Red List of Threatened Species", "url": "https://www.iucn.org/resources/conservation-tool/iucn-red-list-threatened-species", "asOf": "2025" },
+      "insight": "Under 10% of the roughly 2 million known species have even been assessed, but among those evaluated, about 28% are threatened with extinction."
+    },
+    {
+      "id": "q3",
+      "category": "technology",
+      "prompt": "How many airline passengers were carried on scheduled flights worldwide in 2024?",
+      "unit": "billion passengers",
+      "scale": "linear",
+      "min": 0,
+      "max": 10,
+      "answer": 4.7,
+      "source": { "name": "ICAO (International Civil Aviation Organization)", "url": "https://www.icao.int/about-icao/AnnualReport2024/world-air-transport-2024", "asOf": "2024" },
+      "insight": "Global scheduled air travel surpassed pre-pandemic levels in 2024, up almost 8% from 2023."
+    },
+    {
+      "id": "q4",
+      "category": "population growth",
+      "prompt": "As of 2023, what was the world's annual population growth rate?",
+      "unit": "% per year",
+      "scale": "linear",
+      "min": 0,
+      "max": 3,
+      "answer": 0.93,
+      "source": { "name": "World Bank (World Development Indicators)", "url": "https://data.worldbank.org/indicator/SP.POP.GROW?locations=1W", "asOf": "2023" },
+      "insight": "World population growth has slowed steadily from a peak of about 2.3% per year in the late 1960s to under 1% today."
+    },
+    {
+      "id": "q5",
+      "category": "energy",
+      "prompt": "What share of global electricity generation came from wind and solar combined in 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 15,
+      "source": { "name": "Ember, Global Electricity Review 2025", "url": "https://ember-energy.org/latest-insights/global-electricity-review-2025/", "asOf": "2024" },
+      "insight": "Wind and solar together overtook hydropower in 2024 to supply 15% of the world's electricity, after two decades of rapid growth."
+    }
+  ]
+}
