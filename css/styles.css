@@ -284,20 +284,24 @@ input[type="range"]::-moz-range-thumb {
   height: 10px;
   border-radius: 999px;
   background: var(--track);
-  margin: 2.5rem 0 1.75rem;
+  margin: 3rem 0.5rem 3rem;
 }
 
+/* The dot's position is the single source of truth for where a marker sits on the
+   track — it's centered via top:50% + translate(-50%,-50%) on the dot itself, not on
+   a box that also contains the label. That keeps the dot glued to the track regardless
+   of label width/wrapping, and keeps the two markers' labels (one above, one below)
+   from ever competing for the same vertical space. */
 .reveal-marker {
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
 }
 
 .reveal-marker .dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -314,24 +318,37 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .reveal-marker .label {
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
   font-size: 0.72rem;
   font-weight: 600;
   white-space: nowrap;
   background: var(--surface-raised);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 0.1rem 0.4rem;
+  padding: 0.15rem 0.45rem;
 }
 
-.reveal-marker.guess {
-  bottom: 100%;
-  margin-bottom: 6px;
+.reveal-marker.guess .label {
+  bottom: calc(50% + 14px);
 }
 
-.reveal-marker.actual {
-  top: 100%;
-  margin-top: 6px;
-  flex-direction: column-reverse;
+.reveal-marker.actual .label {
+  top: calc(50% + 14px);
+}
+
+/* When a marker sits within ~6% of either end of the track, its label would otherwise
+   hang off the edge of the card — pin it to that edge instead of centering on the dot. */
+.reveal-marker.edge-low .label {
+  left: 0;
+  transform: translateX(0);
+}
+
+.reveal-marker.edge-high .label {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
 }
 
 .reveal-score {

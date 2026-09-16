@@ -8,6 +8,7 @@ function defaultState() {
     streak: 0,
     lastPlayedDate: null,
     results: {}, // dateString -> { score, tier, guesses: [{questionId, guess, score}], playedAt }
+    inProgress: {}, // dateString -> { guesses: [{questionId, guess, score}] } — cleared once that day is completed
     gamesPlayed: 0,
     totalScore: 0,
   };
@@ -36,6 +37,20 @@ export function getResultFor(dateString) {
   return loadState().results[dateString] || null;
 }
 
+export function getProgressFor(dateString) {
+  return loadState().inProgress[dateString] || null;
+}
+
+export function saveProgress(dateString, { guesses }) {
+  const state = loadState();
+  state.inProgress[dateString] = { guesses };
+  saveState(state);
+}
+
+function clearProgress(state, dateString) {
+  delete state.inProgress[dateString];
+}
+
 function isConsecutiveDay(prevDateString, dateString) {
   if (!prevDateString) return false;
   const prev = new Date(`${prevDateString}T00:00:00`);
@@ -55,6 +70,7 @@ export function recordResult(dateString, { score, tier, guesses }) {
   }
   state.lastPlayedDate = dateString;
   state.results[dateString] = { score, tier, guesses, playedAt: new Date().toISOString() };
+  clearProgress(state, dateString);
   state.gamesPlayed += 1;
   state.totalScore += score;
 

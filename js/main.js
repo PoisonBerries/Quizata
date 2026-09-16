@@ -1,5 +1,5 @@
 import { resolveRequestedDate, puzzleNumber } from "./dates.js";
-import { getResultFor, recordResult, getStats } from "./storage.js";
+import { getResultFor, recordResult, getStats, getProgressFor, saveProgress } from "./storage.js";
 import { runGame, computeTotal } from "./game.js";
 import { emojiForQuestionScore } from "./scoring.js";
 import { formatValue } from "./format.js";
@@ -113,9 +113,17 @@ async function main() {
     return;
   }
 
-  document.getElementById("start-btn").onclick = () => {
+  const progress = getProgressFor(actualDate);
+  const resumeFrom = progress && progress.guesses.length > 0 && progress.guesses.length < puzzle.questions.length ? progress : null;
+
+  const startBtn = document.getElementById("start-btn");
+  startBtn.textContent = resumeFrom ? `Continue (${resumeFrom.guesses.length}/${puzzle.questions.length})` : "Play today's Quizata";
+
+  startBtn.onclick = () => {
     showOnly("game");
     runGame(puzzle, {
+      resumeFrom,
+      onProgress: (guesses) => saveProgress(actualDate, { guesses }),
       onComplete: (guesses) => {
         const { total, tier } = computeTotal(guesses);
         recordResult(actualDate, { score: total, tier, guesses });

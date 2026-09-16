@@ -36,6 +36,40 @@ function show(screenEl) {
   screenEl.hidden = false;
 }
 
+// Both markers' labels are anchored to their own dot's x-position, so when the guess and
+// actual value land close together on the track, the two dots (and their labels, one above
+// the track and one below) can visually merge. Nudge them apart just enough to stay legible —
+// the label text itself always shows the true, un-nudged value.
+const MIN_MARKER_GAP_PCT = 6;
+const EDGE_ZONE_PCT = 8;
+
+function positionRevealMarkers(question, guessValue) {
+  let guessPct = valueToSliderPosition(question, guessValue, 100);
+  let actualPct = valueToSliderPosition(question, question.answer, 100);
+
+  const gap = Math.abs(guessPct - actualPct);
+  if (gap < MIN_MARKER_GAP_PCT) {
+    const shift = (MIN_MARKER_GAP_PCT - gap) / 2;
+    if (guessPct <= actualPct) {
+      guessPct = Math.max(0, guessPct - shift);
+      actualPct = Math.min(100, actualPct + shift);
+    } else {
+      guessPct = Math.min(100, guessPct + shift);
+      actualPct = Math.max(0, actualPct - shift);
+    }
+  }
+
+  placeMarker(els.rGuessMarker, guessPct);
+  placeMarker(els.rActualMarker, actualPct);
+}
+
+function placeMarker(markerEl, pct) {
+  markerEl.style.left = `${pct}%`;
+  markerEl.classList.remove("edge-low", "edge-high");
+  if (pct < EDGE_ZONE_PCT) markerEl.classList.add("edge-low");
+  else if (pct > 100 - EDGE_ZONE_PCT) markerEl.classList.add("edge-high");
+}
+
 function renderProgressDots(total, currentIndex, completedCount) {
   els.progressDots.innerHTML = "";
   for (let i = 0; i < total; i++) {
@@ -47,9 +81,11 @@ function renderProgressDots(total, currentIndex, completedCount) {
   }
 }
 
-export function runGame(puzzle, { onComplete }) {
+export function runGame(puzzle, { onComplete, onProgress, resumeFrom }) {
   const questions = puzzle.questions;
-  const state = { index: 0, guesses: [] };
+  const state = resumeFrom
+    ? { index: resumeFrom.guesses.length, guesses: [...resumeFrom.guesses] }
+    : { index: 0, guesses: [] };
 
   function renderQuestion() {
     const q = questions[state.index];
@@ -79,6 +115,7 @@ export function runGame(puzzle, { onComplete }) {
     const guessValue = sliderPositionToValue(question, position, SLIDER_MAX);
     const score = scoreQuestion(question, guessValue);
     state.guesses.push({ questionId: question.id, guess: guessValue, score });
+    onProgress?.(state.guesses);
     renderReveal(question, guessValue, score);
   }
 
@@ -87,10 +124,7 @@ export function runGame(puzzle, { onComplete }) {
     els.rCategory.textContent = question.category;
     els.rPrompt.textContent = question.prompt;
 
-    const guessPct = valueToSliderPosition(question, guessValue, 100);
-    const actualPct = valueToSliderPosition(question, question.answer, 100);
-    els.rGuessMarker.style.left = `${guessPct}%`;
-    els.rActualMarker.style.left = `${actualPct}%`;
+    positionRevealMarkers(question, guessValue);
     els.rGuessLabel.textContent = `You: ${formatValue(question, guessValue)}`;
     els.rActualLabel.textContent = `Actual: ${formatValue(question, question.answer)}`;
 
