@@ -238,6 +238,23 @@ main {
   padding: 0.25rem 0.2rem;
 }
 
+.slider-track-wrap {
+  position: relative;
+}
+
+.first-guess-marker {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;

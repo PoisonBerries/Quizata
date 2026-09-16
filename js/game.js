@@ -12,6 +12,7 @@ const els = {
   qPrompt: document.getElementById("q-prompt"),
   qReadout: document.getElementById("q-readout"),
   qSlider: document.getElementById("q-slider"),
+  firstGuessMarker: document.getElementById("first-guess-marker"),
   qMinLabel: document.getElementById("q-min-label"),
   qMaxLabel: document.getElementById("q-max-label"),
   lockBtn: document.getElementById("lock-guess-btn"),
@@ -47,7 +48,10 @@ function show(screenEl) {
 // Both markers' labels are anchored to their own dot's x-position, so when the guess and
 // actual value land close together on the track, the two dots (and their labels, one above
 // the track and one below) can visually merge. Nudge them apart just enough to stay legible —
-// the label text itself always shows the true, un-nudged value.
+// the label text itself always shows the true, un-nudged value. A gap under
+// NEAR_EXACT_GAP_PCT is left alone on purpose — a bullseye or near-bullseye guess should
+// show as one overlapping dot, not get artificially pulled apart.
+const NEAR_EXACT_GAP_PCT = 2;
 const MIN_MARKER_GAP_PCT = 6;
 const EDGE_ZONE_PCT = 8;
 
@@ -56,7 +60,7 @@ function positionRevealMarkers(question, guessValue) {
   let actualPct = valueToSliderPosition(question, question.answer, 100);
 
   const gap = Math.abs(guessPct - actualPct);
-  if (gap < MIN_MARKER_GAP_PCT) {
+  if (gap >= NEAR_EXACT_GAP_PCT && gap < MIN_MARKER_GAP_PCT) {
     const shift = (MIN_MARKER_GAP_PCT - gap) / 2;
     if (guessPct <= actualPct) {
       guessPct = Math.max(0, guessPct - shift);
@@ -151,6 +155,8 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
       activeBounds: { min: q.min, max: q.max },
     };
 
+    els.firstGuessMarker.hidden = true;
+
     show(els.gameScreen);
     renderProgressDots(questions.length, state.index, state.guesses.length);
     els.qCategory.textContent = q.category;
@@ -179,6 +185,12 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
     els.qReadout.textContent = formatValue(question, value);
   }
 
+  function showFirstGuessMarker(question, value) {
+    const pct = valueToSliderPosition(activeBoundsQuestion(question), value, 100);
+    els.firstGuessMarker.style.left = `${pct}%`;
+    els.firstGuessMarker.hidden = false;
+  }
+
   function onNarrowClick(question) {
     if (dailyChargeUsed("narrow") || qState.awaitingSecondGuess) return;
     const currentValue = sliderPositionToValue(activeBoundsQuestion(question), Number(els.qSlider.value), SLIDER_MAX);
@@ -203,6 +215,7 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
       qState.awaitingSecondGuess = true;
       qState.secondGuessUsed = true;
       renderSliderBounds(question);
+      showFirstGuessMarker(question, guessValue);
       updatePowerUpButtons();
       return;
     }

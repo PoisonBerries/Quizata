@@ -50,7 +50,10 @@
       </div>
       <div class="value-readout" id="q-readout"></div>
       <div class="slider-wrap">
-        <input type="range" id="q-slider" min="0" max="1000" step="1" aria-label="Your guess" />
+        <div class="slider-track-wrap">
+          <input type="range" id="q-slider" min="0" max="1000" step="1" aria-label="Your guess" />
+          <div class="first-guess-marker" id="first-guess-marker" hidden></div>
+        </div>
         <div class="range-labels">
           <span id="q-min-label"></span>
           <span id="q-max-label"></span>
