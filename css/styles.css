@@ -91,9 +91,6 @@ a {
   font-weight: 600;
   color: var(--text);
   text-decoration: none;
-  display: flex;
-  align-items: baseline;
-  gap: 0.35rem;
 }
 
 .wordmark .dot {
