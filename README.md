@@ -49,8 +49,23 @@ This is a static site with no build step, so Pages can serve it directly from th
 2. In the repo's Settings → Pages, set "Source" to "Deploy from a branch," branch `main`, folder `/ (root)`.
 3. The site will be live at `https://<username>.github.io/<repo>/` within a few minutes.
 
+## Scoring and power-ups
+
+Each question's final score is half accuracy (distance from the real answer) and half how you compare to everyone else who answered it that day (a percentile from the crowd backend below), capped lower if you used a power-up on that question. See [about.html](about.html) for the player-facing explanation. The math lives in `js/scoring.js` (`scoreQuestion`, `combineScore`) and `js/powerups.js` (narrow-range and second-guess helpers) — both are plain functions with no DOM dependency.
+
+## Crowd backend (Firestore)
+
+`js/crowd.js` records an aggregate-only per-question stat (`count`, `scoreSum`, a 20-bucket score histogram — never individual guesses) to Firebase Firestore, and returns the submitting player's percentile. It's written to fail soft: with `js/firebase-config.js` left at its placeholder values, or if the network call fails or times out, every question just scores on accuracy alone and the game plays normally.
+
+To turn it on:
+
+1. In the [Firebase console](https://console.firebase.google.com/), for the project: enable **Firestore** (production mode, any region) and enable **Anonymous** sign-in under Authentication → Sign-in method.
+2. Project settings → General → "Your apps" → add a Web app if none exists → copy the `firebaseConfig` object into `js/firebase-config.js`.
+3. Firestore → Rules → paste in the contents of [firestore.rules](firestore.rules) → Publish.
+
+No `firebase`/`gcloud` CLI is required — everything above is a few clicks in the console, and the app talks to Firestore directly from the browser via the CDN-hosted modular SDK (no build step needed there either).
+
 ## Roadmap
 
-- **Now**: fully static, localStorage-only streak/history.
-- **Next**: a lightweight shared backend (Firebase/Supabase) to record anonymized guesses and show what other players guessed on the reveal screen — the "wisdom of crowds vs. reality" comparison this game is ultimately built around.
+- **Now**: crowd-scored, power-ups, streak/history in localStorage.
 - **Later**: archive/practice mode for past puzzles, category filters, social-share image generation.

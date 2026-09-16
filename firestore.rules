@@ -1,0 +1,28 @@
+rules_version = '2';
+
+// Quizata crowd-stats rules: aggregate-only, no per-player rows are ever stored.
+// Anyone can read the aggregates (needed to compute percentiles client-side); writes
+// require anonymous auth and must be a single well-formed increment matching what
+// js/crowd.js actually sends, so a casual bad actor can't stuff the aggregate with
+// junk without at least going through the same increment shape.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /dailyStats/{date}/questions/{questionId} {
+      allow read: if true;
+
+      allow create: if request.auth != null
+        && date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.count == 1
+        && request.resource.data.scoreSum >= 0
+        && request.resource.data.scoreSum <= 100;
+
+      allow update: if request.auth != null
+        && date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.count == resource.data.count + 1
+        && request.resource.data.scoreSum >= resource.data.scoreSum
+        && request.resource.data.scoreSum <= resource.data.scoreSum + 100;
+
+      allow delete: if false;
+    }
+  }
+}

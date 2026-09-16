@@ -56,6 +56,15 @@
           <span id="q-max-label"></span>
         </div>
       </div>
+      <div class="powerup-row" id="powerup-row">
+        <button class="powerup-btn" id="narrow-btn" type="button">
+          🔍 Narrow range <span class="charge" id="narrow-charge">1</span>
+        </button>
+        <button class="powerup-btn" id="second-guess-btn" type="button">
+          🎯 Second guess <span class="charge" id="second-guess-charge">1</span>
+        </button>
+      </div>
+      <p class="powerup-hint" id="powerup-hint" hidden></p>
       <div class="btn-row">
         <button class="btn" id="lock-guess-btn">Lock in guess</button>
       </div>
@@ -77,6 +86,7 @@
         </div>
       </div>
       <div class="reveal-score"><span class="emoji" id="r-emoji"></span><span id="r-score"></span>/100</div>
+      <p class="score-subline" id="r-score-subline"></p>
       <p class="insight" id="r-insight"></p>
       <p class="source-line">Source: <a id="r-source-link" target="_blank" rel="noopener noreferrer"></a></p>
       <div class="btn-row">

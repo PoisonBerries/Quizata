@@ -37,6 +37,16 @@ export function scoreQuestion(question, guess) {
   return Math.round(Math.max(0, 100 * (1 - dist)));
 }
 
+// Half accuracy, half how you compare to everyone else who answered this question today
+// (percentile, 0-100) — falls back to accuracy alone when there isn't enough crowd data
+// yet (percentile is null). A power-up used on this question caps the ceiling: 90 for
+// one used, 80 for both, so precision help is a real tradeoff rather than a free win.
+export function combineScore(accuracyScore, percentile, powerUpsUsedCount = 0) {
+  const raw = percentile == null ? accuracyScore : Math.round(0.5 * accuracyScore + 0.5 * percentile);
+  const cap = 100 - 10 * powerUpsUsedCount;
+  return Math.min(raw, cap);
+}
+
 export function tierForScore(totalScore) {
   if (totalScore >= 450) return "Reality Master";
   if (totalScore >= 350) return "Sharp Eye";

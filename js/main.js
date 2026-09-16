@@ -52,7 +52,7 @@ function renderSummary(puzzle, guesses, actualDate) {
   guesses.forEach((g, i) => {
     const q = puzzle.questions[i];
     const li = document.createElement("li");
-    li.innerHTML = `<span class="q-label">${q.category}</span><span>${emojiForQuestionScore(g.score)} ${g.score}/100</span>`;
+    li.innerHTML = `<span class="q-label">${q.category}</span><span>${emojiForQuestionScore(g.finalScore)} ${g.finalScore}/100</span>`;
     list.appendChild(li);
   });
 
@@ -65,7 +65,7 @@ function renderSummary(puzzle, guesses, actualDate) {
     const text = buildShareText({
       puzzleNum: puzzleNumber(actualDate),
       totalScore: total,
-      questionScores: guesses.map((g) => g.score),
+      questionScores: guesses.map((g) => g.finalScore),
       url: window.location.origin + window.location.pathname,
     });
     const ok = await copyShareText(text);
@@ -122,6 +122,7 @@ async function main() {
   startBtn.onclick = () => {
     showOnly("game");
     runGame(puzzle, {
+      date: actualDate,
       resumeFrom,
       onProgress: (guesses) => saveProgress(actualDate, { guesses }),
       onComplete: (guesses) => {
