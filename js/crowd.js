@@ -3,9 +3,14 @@
 // against everyone who answered that question today so far.
 //
 // Every call here fails soft: if Firebase isn't configured, the network is down, or
-// anything else goes wrong, submitAndGetPercentile resolves to null (never rejects,
-// never hangs past FIREBASE_TIMEOUT_MS) and the caller falls back to accuracy-only
-// scoring. A required-but-unreliable network step must never block gameplay.
+// anything else goes wrong, submitAndGetPercentile resolves { percentile: null,
+// reason: "unavailable" } (never rejects, never hangs past FIREBASE_TIMEOUT_MS) and the
+// caller falls back to accuracy-only scoring. A required-but-unreliable network step
+// must never block gameplay. "unavailable" is kept distinct from "insufficient" (a
+// confirmed too-small sample, known for certain from the same transaction that
+// succeeded) so the UI never claims "not enough players" when the real cause was a
+// dropped request — that would itself be a misleading number, which is the one thing
+// this game is built to avoid.
 
 import { firebaseConfig, isConfigured } from "./firebase-config.js";
 
@@ -43,9 +48,11 @@ function bucketFor(score) {
   return Math.min(BUCKET_COUNT - 1, Math.max(0, Math.floor(score / BUCKET_WIDTH)));
 }
 
+const UNAVAILABLE = { percentile: null, reason: "unavailable" };
+
 function withTimeout(promise, ms) {
   return new Promise((resolve) => {
-    const timer = setTimeout(() => resolve(null), ms);
+    const timer = setTimeout(() => resolve(UNAVAILABLE), ms);
     promise.then(
       (value) => {
         clearTimeout(timer);
@@ -53,7 +60,7 @@ function withTimeout(promise, ms) {
       },
       () => {
         clearTimeout(timer);
-        resolve(null);
+        resolve(UNAVAILABLE);
       }
     );
   });
@@ -61,7 +68,7 @@ function withTimeout(promise, ms) {
 
 async function doSubmit(date, questionId, accuracyScore) {
   const fb = await loadFirebase();
-  if (!fb) return null;
+  if (!fb) return UNAVAILABLE;
   const { db, doc, runTransaction, increment } = fb;
   const ref = doc(db, "dailyStats", date, "questions", questionId);
   const myBucket = bucketFor(accuracyScore);
@@ -90,13 +97,15 @@ async function doSubmit(date, questionId, accuracyScore) {
       { merge: true }
     );
 
-    return percentile;
+    return { percentile, reason: percentile == null ? "insufficient" : "ok" };
   });
 }
 
-// Returns a 0-100 percentile (this player's accuracy score vs. everyone who answered
-// this question today before them), or null if there isn't enough crowd data yet, the
-// backend isn't configured, or the call didn't complete in time.
+// Resolves { percentile, reason }. percentile is a 0-100 rank against everyone who
+// answered this question today before this player, present only when reason is "ok".
+// reason is "insufficient" (confirmed too few prior answers), or "unavailable"
+// (unconfigured, offline, or timed out — genuinely unknown, not to be confused with
+// a confirmed small sample).
 export async function submitAndGetPercentile(date, questionId, accuracyScore) {
   return withTimeout(doSubmit(date, questionId, accuracyScore), FIREBASE_TIMEOUT_MS);
 }

@@ -78,6 +78,18 @@ function placeMarker(markerEl, pct) {
   else if (pct > 100 - EDGE_ZONE_PCT) markerEl.classList.add("edge-high");
 }
 
+function sublineFor(guessRecord) {
+  if (guessRecord.crowdReason === "ok") {
+    return `Accuracy ${guessRecord.accuracyScore} · Beat ${guessRecord.percentile}% of players today`;
+  }
+  if (guessRecord.crowdReason === "insufficient") {
+    return "Not enough players yet — scored on accuracy alone.";
+  }
+  // "unavailable": the comparison genuinely couldn't be confirmed (offline, unconfigured,
+  // timed out) — never claim "not enough players" here, since that's a specific, false claim.
+  return "Scored on accuracy alone this time.";
+}
+
 function renderProgressDots(total, currentIndex, completedCount) {
   els.progressDots.innerHTML = "";
   for (let i = 0; i < total; i++) {
@@ -210,12 +222,12 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
 
     els.lockBtn.disabled = true;
     els.lockBtn.textContent = "Comparing to other players…";
-    const percentile = await submitAndGetPercentile(date, question.id, accuracyScore);
+    const { percentile, reason } = await submitAndGetPercentile(date, question.id, accuracyScore);
     els.lockBtn.disabled = false;
     els.lockBtn.textContent = "Lock in guess";
 
     const finalScore = combineScore(accuracyScore, percentile, powerUpsUsed.length);
-    const guessRecord = { questionId: question.id, guessValue: finalGuessValue, accuracyScore, percentile, powerUpsUsed, finalScore };
+    const guessRecord = { questionId: question.id, guessValue: finalGuessValue, accuracyScore, percentile, crowdReason: reason, powerUpsUsed, finalScore };
     state.guesses.push(guessRecord);
     onProgress?.(state.guesses);
     renderReveal(question, guessRecord);
@@ -232,10 +244,7 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
 
     els.rEmoji.textContent = emojiForQuestionScore(guessRecord.finalScore);
     els.rScore.textContent = String(guessRecord.finalScore);
-    els.rScoreSubline.textContent =
-      guessRecord.percentile == null
-        ? "Not enough players yet — scored on accuracy alone."
-        : `Accuracy ${guessRecord.accuracyScore} · Beat ${guessRecord.percentile}% of players today`;
+    els.rScoreSubline.textContent = sublineFor(guessRecord);
     els.rInsight.textContent = question.insight;
     els.rSourceLink.textContent = `${question.source.name} (${question.source.asOf})`;
     els.rSourceLink.href = question.source.url;

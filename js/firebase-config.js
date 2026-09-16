@@ -7,12 +7,12 @@
 // no-ops entirely, so the game runs fine (accuracy-only scoring) without a backend.
 
 export const firebaseConfig = {
-  apiKey: "REPLACE_ME",
-  authDomain: "REPLACE_ME",
-  projectId: "REPLACE_ME",
-  storageBucket: "REPLACE_ME",
-  messagingSenderId: "REPLACE_ME",
-  appId: "REPLACE_ME",
+  apiKey: "AIzaSyCv3XO8MyshiDSr5slXUF_yhXDICYm4eZ8",
+  authDomain: "quizata-67786.firebaseapp.com",
+  projectId: "quizata-67786",
+  storageBucket: "quizata-67786.firebasestorage.app",
+  messagingSenderId: "16920741250",
+  appId: "1:16920741250:web:591ad1d56a0a77b16dbb9b",
 };
 
 export const isConfigured = firebaseConfig.apiKey !== "REPLACE_ME";
