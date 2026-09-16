@@ -30,6 +30,8 @@ const els = {
   rGuessLabel: document.getElementById("r-guess-label"),
   rActualMarker: document.getElementById("r-actual-marker"),
   rActualLabel: document.getElementById("r-actual-label"),
+  rCrowdMarker: document.getElementById("r-crowd-marker"),
+  rCrowdLabel: document.getElementById("r-crowd-label"),
   rEmoji: document.getElementById("r-emoji"),
   rScore: document.getElementById("r-score"),
   rScoreSubline: document.getElementById("r-score-subline"),
@@ -55,7 +57,7 @@ const NEAR_EXACT_GAP_PCT = 2;
 const MIN_MARKER_GAP_PCT = 6;
 const EDGE_ZONE_PCT = 8;
 
-function positionRevealMarkers(question, guessValue) {
+function positionRevealMarkers(question, guessValue, crowdAverageGuess) {
   let guessPct = valueToSliderPosition(question, guessValue, 100);
   let actualPct = valueToSliderPosition(question, question.answer, 100);
 
@@ -73,6 +75,29 @@ function positionRevealMarkers(question, guessValue) {
 
   placeMarker(els.rGuessMarker, guessPct);
   placeMarker(els.rActualMarker, actualPct);
+
+  if (crowdAverageGuess == null) {
+    els.rCrowdMarker.hidden = true;
+    return;
+  }
+  let crowdPct = valueToSliderPosition(question, crowdAverageGuess, 100);
+  // The crowd marker only needs to dodge guess/actual (which may themselves overlap by
+  // design) — a bullseye guess/actual pair shouldn't get pried apart just because the
+  // crowd marker also wants space nearby.
+  for (let iter = 0; iter < 4; iter++) {
+    let moved = false;
+    for (const other of [guessPct, actualPct]) {
+      const crowdGap = crowdPct - other;
+      if (Math.abs(crowdGap) < MIN_MARKER_GAP_PCT) {
+        crowdPct = other + Math.sign(crowdGap || 1) * MIN_MARKER_GAP_PCT;
+        moved = true;
+      }
+    }
+    if (!moved) break;
+  }
+  crowdPct = Math.min(100, Math.max(0, crowdPct));
+  els.rCrowdMarker.hidden = false;
+  placeMarker(els.rCrowdMarker, crowdPct);
 }
 
 function placeMarker(markerEl, pct) {
@@ -235,12 +260,21 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
 
     els.lockBtn.disabled = true;
     els.lockBtn.textContent = "Comparing to other players…";
-    const { percentile, reason } = await submitAndGetPercentile(date, question.id, accuracyScore);
+    const { percentile, crowdAverageGuess, reason } = await submitAndGetPercentile(date, question.id, accuracyScore, finalGuessValue);
     els.lockBtn.disabled = false;
     els.lockBtn.textContent = "Lock in guess";
 
     const finalScore = combineScore(accuracyScore, percentile, powerUpsUsed.length);
-    const guessRecord = { questionId: question.id, guessValue: finalGuessValue, accuracyScore, percentile, crowdReason: reason, powerUpsUsed, finalScore };
+    const guessRecord = {
+      questionId: question.id,
+      guessValue: finalGuessValue,
+      accuracyScore,
+      percentile,
+      crowdAverageGuess,
+      crowdReason: reason,
+      powerUpsUsed,
+      finalScore,
+    };
     state.guesses.push(guessRecord);
     onProgress?.(state.guesses);
     renderReveal(question, guessRecord);
@@ -251,9 +285,12 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
     els.rCategory.textContent = question.category;
     els.rPrompt.textContent = question.prompt;
 
-    positionRevealMarkers(question, guessRecord.guessValue);
+    positionRevealMarkers(question, guessRecord.guessValue, guessRecord.crowdAverageGuess);
     els.rGuessLabel.textContent = `You: ${formatValue(question, guessRecord.guessValue)}`;
     els.rActualLabel.textContent = `Actual: ${formatValue(question, question.answer)}`;
+    if (guessRecord.crowdAverageGuess != null) {
+      els.rCrowdLabel.textContent = `Crowd avg: ${formatValue(question, guessRecord.crowdAverageGuess)}`;
+    }
 
     els.rEmoji.textContent = emojiForQuestionScore(guessRecord.finalScore);
     els.rScore.textContent = String(guessRecord.finalScore);

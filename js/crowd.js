@@ -1,6 +1,7 @@
-// Crowd-wisdom backend: records each player's accuracy score per question in an
-// aggregate-only Firestore doc (no per-player rows), and returns a percentile rank
-// against everyone who answered that question today so far.
+// Crowd-wisdom backend: records each player's accuracy score AND guessed value per
+// question in an aggregate-only Firestore doc (no per-player rows — just running sums
+// and a score histogram), and returns both a percentile rank and the crowd's average
+// guessed value against everyone who answered that question today so far.
 //
 // Every call here fails soft: if Firebase isn't configured, the network is down, or
 // anything else goes wrong, submitAndGetPercentile resolves { percentile: null,
@@ -48,7 +49,7 @@ function bucketFor(score) {
   return Math.min(BUCKET_COUNT - 1, Math.max(0, Math.floor(score / BUCKET_WIDTH)));
 }
 
-const UNAVAILABLE = { percentile: null, reason: "unavailable" };
+const UNAVAILABLE = { percentile: null, crowdAverageGuess: null, reason: "unavailable" };
 
 function withTimeout(promise, ms) {
   return new Promise((resolve) => {
@@ -66,7 +67,7 @@ function withTimeout(promise, ms) {
   });
 }
 
-async function doSubmit(date, questionId, accuracyScore) {
+async function doSubmit(date, questionId, accuracyScore, guessValue) {
   const fb = await loadFirebase();
   if (!fb) return UNAVAILABLE;
   const { db, doc, runTransaction, increment } = fb;
@@ -80,11 +81,13 @@ async function doSubmit(date, questionId, accuracyScore) {
     const buckets = data.scoreBuckets || {};
 
     let percentile = null;
+    let crowdAverageGuess = null;
     if (priorCount >= MIN_SAMPLE_SIZE) {
       let below = 0;
       for (let b = 0; b < myBucket; b++) below += buckets[String(b)] || 0;
       const inMine = buckets[String(myBucket)] || 0;
       percentile = Math.round((100 * (below + inMine / 2)) / priorCount);
+      crowdAverageGuess = (data.valueSum || 0) / priorCount;
     }
 
     tx.set(
@@ -92,20 +95,22 @@ async function doSubmit(date, questionId, accuracyScore) {
       {
         count: increment(1),
         scoreSum: increment(accuracyScore),
+        valueSum: increment(guessValue),
         scoreBuckets: { [String(myBucket)]: increment(1) },
       },
       { merge: true }
     );
 
-    return { percentile, reason: percentile == null ? "insufficient" : "ok" };
+    return { percentile, crowdAverageGuess, reason: percentile == null ? "insufficient" : "ok" };
   });
 }
 
-// Resolves { percentile, reason }. percentile is a 0-100 rank against everyone who
+// Resolves { percentile, crowdAverageGuess, reason }. percentile (0-100) and
+// crowdAverageGuess (in the question's own units) are both against everyone who
 // answered this question today before this player, present only when reason is "ok".
 // reason is "insufficient" (confirmed too few prior answers), or "unavailable"
-// (unconfigured, offline, or timed out — genuinely unknown, not to be confused with
-// a confirmed small sample).
-export async function submitAndGetPercentile(date, questionId, accuracyScore) {
-  return withTimeout(doSubmit(date, questionId, accuracyScore), FIREBASE_TIMEOUT_MS);
+// (unconfigured, offline, or timed out — genuinely unknown, not to be confused with a
+// confirmed small sample).
+export async function submitAndGetPercentile(date, questionId, accuracyScore, guessValue) {
+  return withTimeout(doSubmit(date, questionId, accuracyScore, guessValue), FIREBASE_TIMEOUT_MS);
 }
