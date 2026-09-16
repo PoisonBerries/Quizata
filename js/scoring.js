@@ -47,6 +47,13 @@ export function combineScore(accuracyScore, percentile, powerUpsUsedCount = 0) {
   return Math.min(raw, cap);
 }
 
+// Guesses saved before the crowd-scoring update stored a single accuracy-only "score"
+// field; current guesses store "finalScore". A previously-completed result read back
+// from localStorage must never show NaN/undefined just because the schema grew a field.
+export function finalScoreOf(guess) {
+  return guess.finalScore ?? guess.score ?? 0;
+}
+
 export function tierForScore(totalScore) {
   if (totalScore >= 450) return "Reality Master";
   if (totalScore >= 350) return "Sharp Eye";

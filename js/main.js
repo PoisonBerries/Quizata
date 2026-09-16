@@ -1,7 +1,7 @@
 import { resolveRequestedDate, puzzleNumber } from "./dates.js";
 import { getResultFor, recordResult, getStats, getProgressFor, saveProgress } from "./storage.js";
 import { runGame, computeTotal } from "./game.js";
-import { emojiForQuestionScore } from "./scoring.js";
+import { emojiForQuestionScore, finalScoreOf } from "./scoring.js";
 import { formatValue } from "./format.js";
 import { buildShareText, copyShareText } from "./share.js";
 
@@ -51,8 +51,9 @@ function renderSummary(puzzle, guesses, actualDate) {
   list.innerHTML = "";
   guesses.forEach((g, i) => {
     const q = puzzle.questions[i];
+    const score = finalScoreOf(g);
     const li = document.createElement("li");
-    li.innerHTML = `<span class="q-label">${q.category}</span><span>${emojiForQuestionScore(g.finalScore)} ${g.finalScore}/100</span>`;
+    li.innerHTML = `<span class="q-label">${q.category}</span><span>${emojiForQuestionScore(score)} ${score}/100</span>`;
     list.appendChild(li);
   });
 
@@ -65,7 +66,7 @@ function renderSummary(puzzle, guesses, actualDate) {
     const text = buildShareText({
       puzzleNum: puzzleNumber(actualDate),
       totalScore: total,
-      questionScores: guesses.map((g) => g.finalScore),
+      questionScores: guesses.map(finalScoreOf),
       url: window.location.origin + window.location.pathname,
     });
     const ok = await copyShareText(text);

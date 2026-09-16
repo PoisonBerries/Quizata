@@ -1,4 +1,4 @@
-import { sliderPositionToValue, valueToSliderPosition, scoreQuestion, combineScore, tierForScore, emojiForQuestionScore } from "./scoring.js";
+import { sliderPositionToValue, valueToSliderPosition, scoreQuestion, combineScore, tierForScore, emojiForQuestionScore, finalScoreOf } from "./scoring.js";
 import { formatValue } from "./format.js";
 import { narrowedRange, pickBetterGuess } from "./powerups.js";
 import { submitAndGetPercentile } from "./crowd.js";
@@ -266,6 +266,6 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
 }
 
 export function computeTotal(guesses) {
-  const total = guesses.reduce((sum, g) => sum + g.finalScore, 0);
+  const total = guesses.reduce((sum, g) => sum + finalScoreOf(g), 0);
   return { total, tier: tierForScore(total) };
 }
