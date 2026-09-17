@@ -1,10 +1,18 @@
 // Crowd-wisdom backend: records each player's accuracy score AND guessed value per
 // question in an aggregate-only Firestore doc (no per-player rows — just running sums
-// and a score histogram), and returns both a percentile rank and the crowd's average
+// and a score histogram), and returns both a "vs. crowd" score and the crowd's average
 // guessed value against everyone who answered that question today so far.
 //
+// The "vs. crowd" score is a GAP from the crowd's average accuracy, not a percentile
+// rank. Rank-based percentile actively feels bad in practice: once a cluster of players
+// sits at a similar accuracy, a tiny difference in your own score can swing your rank by
+// a lot, so a near-miss gets punished as if it were a real miss (this happened for real —
+// a 100-accuracy guess only "beat 71%" of players because several others had also scored
+// near-perfect). Comparing to the average instead means the size of the actual gap is
+// what matters: a few points behind the crowd costs a few points of score, not a cliff.
+//
 // Every call here fails soft: if Firebase isn't configured, the network is down, or
-// anything else goes wrong, submitAndGetPercentile resolves { percentile: null,
+// anything else goes wrong, submitAndGetPercentile resolves { vsCrowdScore: null,
 // reason: "unavailable" } (never rejects, never hangs past FIREBASE_TIMEOUT_MS) and the
 // caller falls back to accuracy-only scoring. A required-but-unreliable network step
 // must never block gameplay. "unavailable" is kept distinct from "insufficient" (a
@@ -20,6 +28,11 @@ const FIREBASE_TIMEOUT_MS = 3000;
 const MIN_SAMPLE_SIZE = 5;
 const BUCKET_COUNT = 20;
 const BUCKET_WIDTH = 100 / BUCKET_COUNT;
+// How many accuracy-score points behind the crowd's average you can be before the
+// vs.-crowd component bottoms out at 0. At or above the average scores 100. A gap of a
+// few points — "you were within 5, the average was within 2" — should barely register;
+// 50 is generous enough that it does, while a genuinely large gap still costs real score.
+const MAX_GAP_SCALE = 50;
 
 let firebasePromise = null;
 
@@ -49,7 +62,7 @@ function bucketFor(score) {
   return Math.min(BUCKET_COUNT - 1, Math.max(0, Math.floor(score / BUCKET_WIDTH)));
 }
 
-const UNAVAILABLE = { percentile: null, crowdAverageGuess: null, reason: "unavailable" };
+const UNAVAILABLE = { vsCrowdScore: null, crowdAverageGuess: null, reason: "unavailable" };
 
 function withTimeout(promise, ms) {
   return new Promise((resolve) => {
@@ -78,15 +91,13 @@ async function doSubmit(date, questionId, accuracyScore, guessValue) {
     const snap = await tx.get(ref);
     const data = snap.exists() ? snap.data() : {};
     const priorCount = data.count || 0;
-    const buckets = data.scoreBuckets || {};
 
-    let percentile = null;
+    let vsCrowdScore = null;
     let crowdAverageGuess = null;
     if (priorCount >= MIN_SAMPLE_SIZE) {
-      let below = 0;
-      for (let b = 0; b < myBucket; b++) below += buckets[String(b)] || 0;
-      const inMine = buckets[String(myBucket)] || 0;
-      percentile = Math.round((100 * (below + inMine / 2)) / priorCount);
+      const crowdAverageAccuracy = (data.scoreSum || 0) / priorCount;
+      const gap = Math.max(0, crowdAverageAccuracy - accuracyScore); // 0 if you're at/above average
+      vsCrowdScore = Math.round(100 * (1 - Math.min(1, gap / MAX_GAP_SCALE)));
       crowdAverageGuess = (data.valueSum || 0) / priorCount;
     }
 
@@ -96,21 +107,23 @@ async function doSubmit(date, questionId, accuracyScore, guessValue) {
         count: increment(1),
         scoreSum: increment(accuracyScore),
         valueSum: increment(guessValue),
+        // Not used for scoring anymore (see the gap-based comparison above), kept only
+        // in case a future distribution view wants it.
         scoreBuckets: { [String(myBucket)]: increment(1) },
       },
       { merge: true }
     );
 
-    return { percentile, crowdAverageGuess, reason: percentile == null ? "insufficient" : "ok" };
+    return { vsCrowdScore, crowdAverageGuess, reason: vsCrowdScore == null ? "insufficient" : "ok" };
   });
 }
 
-// Resolves { percentile, crowdAverageGuess, reason }. percentile (0-100) and
-// crowdAverageGuess (in the question's own units) are both against everyone who
-// answered this question today before this player, present only when reason is "ok".
-// reason is "insufficient" (confirmed too few prior answers), or "unavailable"
-// (unconfigured, offline, or timed out — genuinely unknown, not to be confused with a
-// confirmed small sample).
+// Resolves { vsCrowdScore, crowdAverageGuess, reason }. vsCrowdScore (0-100, 100 meaning
+// at-or-above the crowd's average accuracy) and crowdAverageGuess (in the question's own
+// units) are both against everyone who answered this question today before this player,
+// present only when reason is "ok". reason is "insufficient" (confirmed too few prior
+// answers), or "unavailable" (unconfigured, offline, or timed out — genuinely unknown,
+// not to be confused with a confirmed small sample).
 export async function submitAndGetPercentile(date, questionId, accuracyScore, guessValue) {
   return withTimeout(doSubmit(date, questionId, accuracyScore, guessValue), FIREBASE_TIMEOUT_MS);
 }

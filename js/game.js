@@ -115,7 +115,7 @@ function placeMarker(markerEl, pct) {
 function sublineFor(guessRecord) {
   let basis;
   if (guessRecord.crowdReason === "ok") {
-    basis = `${guessRecord.accuracyScore} accuracy + ${guessRecord.percentile} vs. crowd, averaged`;
+    basis = `${guessRecord.accuracyScore} accuracy + ${guessRecord.vsCrowdScore} vs. crowd, averaged`;
   } else if (guessRecord.crowdReason === "insufficient") {
     basis = `${guessRecord.accuracyScore} accuracy only — not enough players yet`;
   } else {
@@ -270,16 +270,16 @@ export function runGame(puzzle, { onComplete, onProgress, resumeFrom, date }) {
 
     els.lockBtn.disabled = true;
     els.lockBtn.textContent = "Comparing to other players…";
-    const { percentile, crowdAverageGuess, reason } = await submitAndGetPercentile(date, question.id, accuracyScore, finalGuessValue);
+    const { vsCrowdScore, crowdAverageGuess, reason } = await submitAndGetPercentile(date, question.id, accuracyScore, finalGuessValue);
     els.lockBtn.disabled = false;
     els.lockBtn.textContent = "Lock in guess";
 
-    const finalScore = combineScore(accuracyScore, percentile, powerUpsUsed.length);
+    const finalScore = combineScore(accuracyScore, vsCrowdScore, powerUpsUsed.length);
     const guessRecord = {
       questionId: question.id,
       guessValue: finalGuessValue,
       accuracyScore,
-      percentile,
+      vsCrowdScore,
       crowdAverageGuess,
       crowdReason: reason,
       powerUpsUsed,
