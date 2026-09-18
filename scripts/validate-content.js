@@ -11,7 +11,17 @@ const puzzlesDir = join(__dirname, "..", "data", "puzzles");
 const manifestPath = join(__dirname, "..", "data", "manifest.json");
 
 const REQUIRED_QUESTION_FIELDS = ["id", "category", "prompt", "unit", "scale", "min", "max", "answer", "source", "insight"];
+const MIN_PUBLISHERS_PER_DAY = 3;
 let errors = [];
+
+// "World Bank (via Our World in Data)" and "World Bank" are the same publisher, as are
+// "FAO, Global Forest Resources Assessment 2020" and "FAO", and "WHO/UNICEF Joint
+// Monitoring Programme" counts as WHO — compare on the lead organization's bare name.
+function publisherOf(sourceName) {
+  if (!sourceName) return null;
+  const lead = sourceName.toLowerCase().replace(/\(.*?\)/g, "").split(/[\/,&]| and /)[0].trim();
+  return lead.startsWith("world bank") ? "world bank" : lead;
+}
 
 function fail(file, message) {
   errors.push(`${file}: ${message}`);
@@ -76,6 +86,14 @@ function validatePuzzleFile(filename) {
       fail(where, `insight is too long (${q.insight.length} chars, keep it under ~320)`);
     }
   });
+
+  const publishers = new Set(data.questions.map((q) => publisherOf(q.source?.name)).filter(Boolean));
+  if (publishers.size < MIN_PUBLISHERS_PER_DAY) {
+    fail(
+      filename,
+      `a day's questions should draw on at least ${MIN_PUBLISHERS_PER_DAY} different sources, found ${publishers.size} (${[...publishers].join(", ")})`
+    );
+  }
 }
 
 function validateManifest() {

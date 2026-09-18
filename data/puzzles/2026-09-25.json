@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-25",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "economy",
+      "prompt": "Half of the world's population lives on less than how many dollars per day? (Median income or consumption per person in 2024, in 2021 international dollars adjusted for price differences, PPP.)",
+      "unit": "dollars per day",
+      "scale": "linear",
+      "min": 0,
+      "max": 40,
+      "answer": 9.25,
+      "source": {
+        "name": "World Bank Poverty and Inequality Platform (via Our World in Data)",
+        "url": "https://ourworldindata.org/grapher/daily-median-income",
+        "asOf": "2024"
+      },
+      "insight": "The world mean is far higher at about $21.6 a day, reflecting how unequal global incomes are."
+    },
+    {
+      "id": "q2",
+      "category": "society",
+      "prompt": "As of 1 January 2026, what share of the seats in national parliaments worldwide were held by women, according to the Inter-Parliamentary Union?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 27.5,
+      "source": {
+        "name": "Inter-Parliamentary Union (IPU)",
+        "url": "https://www.ipu.org/news/press-releases/2026-03/womens-representation-in-parliament-sees-sluggish-gains",
+        "asOf": "2026"
+      },
+      "insight": "The 27.5% share is up just 0.3 percentage points from a year earlier, the IPU's slowest annual growth since 2017."
+    },
+    {
+      "id": "q3",
+      "category": "demographics",
+      "prompt": "How many megacities, meaning urban areas with 10 million or more inhabitants, were there in the world in 2025, according to the UN's World Urbanization Prospects 2025?",
+      "unit": "megacities",
+      "scale": "linear",
+      "min": 0,
+      "max": 60,
+      "answer": 33,
+      "source": {
+        "name": "UN DESA",
+        "url": "https://www.un.org/en/desa/WUP-2025",
+        "asOf": "2025"
+      },
+      "insight": "There were only 8 megacities in 1975, and 19 of today's 33 are in Asia."
+    },
+    {
+      "id": "q4",
+      "category": "economy",
+      "prompt": "What share of the world's employed people were in informal employment (jobs without basic legal or social protection) in 2025, according to ILO modelled estimates?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 75,
+      "answer": 57.9,
+      "source": {
+        "name": "ILO (via Our World in Data)",
+        "url": "https://ourworldindata.org/grapher/share-in-informal-employment",
+        "asOf": "2025"
+      },
+      "insight": "Informal jobs lack basic social or legal protection and are especially common in low- and middle-income countries."
+    },
+    {
+      "id": "q5",
+      "category": "health",
+      "prompt": "According to WHO, what share of people aged 30 to 79 worldwide had hypertension (high blood pressure) in 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 40,
+      "answer": 33,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
+        "asOf": "2024"
+      },
+      "insight": "About 44% of adults with hypertension, roughly 600 million people, are unaware they have it."
+    }
+  ]
+}

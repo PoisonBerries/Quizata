@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-06",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "society",
+      "prompt": "According to the Uppsala Conflict Data Program (UCDP), how many state-based armed conflicts (conflicts in which a government was one of the parties) were active worldwide in 2025?",
+      "unit": "conflicts",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 65,
+      "source": {
+        "name": "Uppsala Conflict Data Program (Uppsala University)",
+        "url": "https://www.uu.se/en/press/press-releases/2026/2026-06-09-ucdp-record-number-of-conflicts-between-states",
+        "asOf": "2025"
+      },
+      "insight": "UCDP reports this is the highest number since its records began in 1946; 13 of the conflicts were classed as wars (1,000+ battle deaths)."
+    },
+    {
+      "id": "q2",
+      "category": "society",
+      "prompt": "According to Pew Research Center, what share of the world's population was religiously unaffiliated (atheist, agnostic or 'nothing in particular') in 2020?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 30,
+      "answer": 24.2,
+      "source": {
+        "name": "Pew Research Center",
+        "url": "https://www.pewresearch.org/religion/2025/06/09/how-the-global-religious-landscape-changed-from-2010-to-2020/",
+        "asOf": "2020"
+      },
+      "insight": "Pew finds the religiously unaffiliated are the world's third-largest group after Christians (28.8%) and Muslims (25.6%)."
+    },
+    {
+      "id": "q3",
+      "category": "technology",
+      "prompt": "What was the global average price of a lithium-ion battery pack across all sectors in 2025, in US dollars per kilowatt-hour, according to BloombergNEF's annual survey?",
+      "unit": "US$ per kWh",
+      "scale": "linear",
+      "min": 0,
+      "max": 400,
+      "answer": 108,
+      "source": {
+        "name": "BloombergNEF",
+        "url": "https://about.bnef.com/insights/clean-transport/lithium-ion-battery-pack-prices-fall-to-108-per-kilowatt-hour-despite-rising-metal-prices-bloombergnef/",
+        "asOf": "2025"
+      },
+      "insight": "Prices fell 8% from 2024 to a record low, with stationary-storage packs the cheapest segment at $70 per kWh."
+    },
+    {
+      "id": "q4",
+      "category": "energy",
+      "prompt": "What share of the world's electricity was generated from coal in 2025, according to Ember?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 33,
+      "source": {
+        "name": "Ember",
+        "url": "https://ember-energy.org/latest-insights/global-electricity-review-2026/",
+        "asOf": "2025"
+      },
+      "insight": "For the first time in 100 years, renewables (33.8%) generated more of the world's electricity than coal (33.0%)."
+    },
+    {
+      "id": "q5",
+      "category": "health",
+      "prompt": "According to WHO, how many people worldwide were living with dementia in 2021?",
+      "unit": "million people",
+      "scale": "log",
+      "min": 2,
+      "max": 100,
+      "answer": 57,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/dementia",
+        "asOf": "2021"
+      },
+      "insight": "Nearly 10 million new dementia cases arise every year."
+    }
+  ]
+}

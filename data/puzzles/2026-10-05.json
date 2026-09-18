@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-05",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "health",
+      "prompt": "According to the State of Global Air 2025 report (IHME Global Burden of Disease estimates), how many deaths worldwide were attributable to air pollution in 2023?",
+      "unit": "million deaths",
+      "scale": "log",
+      "min": 3,
+      "max": 30,
+      "answer": 7.9,
+      "source": {
+        "name": "Health Effects Institute / IHME (State of Global Air)",
+        "url": "https://www.stateofglobalair.org/news-events/2025/new-state-global-air-2025-report-shows-nearly-nine-ten-global-air-pollution-deaths",
+        "asOf": "2023"
+      },
+      "insight": "Of those 7.9 million deaths, 6.8 million (86%) were from noncommunicable diseases."
+    },
+    {
+      "id": "q2",
+      "category": "environment",
+      "prompt": "What share of the world's total freshwater withdrawals is used by agriculture (irrigation, livestock and aquaculture), according to FAO AQUASTAT data for 2022?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 71,
+      "source": {
+        "name": "FAO AQUASTAT (via World Bank)",
+        "url": "https://data.worldbank.org/indicator/ER.H2O.FWAG.ZS?locations=1W",
+        "asOf": "2022"
+      },
+      "insight": "Agriculture is by far the largest user of freshwater, ahead of industry and household supply."
+    },
+    {
+      "id": "q3",
+      "category": "education",
+      "prompt": "According to UNESCO, how many children, adolescents and youth of school age worldwide were out of school in 2024?",
+      "unit": "million people",
+      "scale": "linear",
+      "min": 0,
+      "max": 800,
+      "answer": 273,
+      "source": {
+        "name": "UNESCO",
+        "url": "https://www.unesco.org/en/articles/more-children-out-school-7th-year-row-273-million",
+        "asOf": "2024"
+      },
+      "insight": "UNESCO says roughly one in six school-age children and youth are excluded from education, and the total has risen for seven consecutive years."
+    },
+    {
+      "id": "q4",
+      "category": "economy",
+      "prompt": "What share of adults (aged 15+) worldwide had an account at a financial institution or with a mobile money provider in 2024, according to the World Bank's Global Findex?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 79,
+      "source": {
+        "name": "World Bank",
+        "url": "https://www.worldbank.org/en/publication/globalfindex",
+        "asOf": "2024"
+      },
+      "insight": "That is up from 74% in 2021, yet about 1.3 billion adults still have no account."
+    },
+    {
+      "id": "q5",
+      "category": "health",
+      "prompt": "In 2024, what share of the world's population used safely managed sanitation services (a toilet whose waste is safely treated or disposed of)?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 58,
+      "source": {
+        "name": "WHO/UNICEF Joint Monitoring Programme",
+        "url": "https://washdata.org/reports/jmp-2025-wash-households",
+        "asOf": "2024"
+      },
+      "insight": "Since 2015, 1.2 billion more people gained safely managed sanitation, yet about 3.4 billion people still lack it."
+    }
+  ]
+}

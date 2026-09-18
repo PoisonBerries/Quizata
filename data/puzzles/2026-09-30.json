@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-30",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "energy",
+      "prompt": "What was the global weighted-average cost of electricity from newly commissioned utility-scale solar photovoltaic projects in 2025, in US cents per kilowatt-hour (levelized cost, 2025 USD), according to IRENA?",
+      "unit": "US cents per kWh",
+      "scale": "linear",
+      "min": 0,
+      "max": 20,
+      "answer": 4.4,
+      "source": {
+        "name": "IRENA",
+        "url": "https://www.irena.org/Publications/2026/Jul/Renewable-Power-Generation-Costs-in-2025",
+        "asOf": "2025"
+      },
+      "insight": "Solar's cost was essentially flat in 2025, at about 4.4 cents against 4.3 in 2024, after falling roughly 89% from about 41.7 cents in 2010."
+    },
+    {
+      "id": "q2",
+      "category": "economy",
+      "prompt": "What share of the world's employed people worked in agriculture (including forestry and fishing) in 2025, according to ILO modelled estimates?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 75,
+      "answer": 25.8,
+      "source": {
+        "name": "ILO (via World Bank)",
+        "url": "https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS",
+        "asOf": "2025"
+      },
+      "insight": "Agriculture employs about a quarter of workers but produces only about 4% of world GDP."
+    },
+    {
+      "id": "q3",
+      "category": "energy",
+      "prompt": "How many people worldwide still lacked access to clean cooking fuels and technologies in 2024, in billions, according to the Tracking SDG7 report by the World Bank, IEA, IRENA, UN Statistics Division and WHO?",
+      "unit": "billion people",
+      "scale": "linear",
+      "min": 0,
+      "max": 3,
+      "answer": 2,
+      "source": {
+        "name": "Tracking SDG7 (World Bank, IEA, IRENA, UN DESA, WHO)",
+        "url": "https://unstats.un.org/unsd/energystats/pubs/documents/sdg_7.pdf",
+        "asOf": "2024"
+      },
+      "insight": "Roughly three in four people now cook with clean fuels, but about 1.5 billion of those still without access live in rural areas."
+    },
+    {
+      "id": "q4",
+      "category": "health",
+      "prompt": "According to WHO, what share of adults aged 18 and over worldwide were living with diabetes in 2022?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 14,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+        "asOf": "2022"
+      },
+      "insight": "The global rate of adult diabetes doubled from about 7% in 1990 to about 14% in 2022."
+    },
+    {
+      "id": "q5",
+      "category": "environment",
+      "prompt": "By how many degrees Celsius was the global average surface temperature in 2025 above the 1850-1900 average, according to the World Meteorological Organization's consolidation of eight datasets?",
+      "unit": "°C",
+      "scale": "linear",
+      "min": 0,
+      "max": 2,
+      "answer": 1.44,
+      "source": {
+        "name": "WMO",
+        "url": "https://wmo.int/news/media-centre/wmo-confirms-2025-was-one-of-warmest-years-record",
+        "asOf": "2025"
+      },
+      "insight": "The eleven years from 2015 to 2025 are the eleven warmest on record in all eight datasets WMO analysed."
+    }
+  ]
+}

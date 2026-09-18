@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-23",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "technology",
+      "prompt": "Worldwide, how many fixed broadband subscriptions were there per 100 inhabitants in 2025, according to ITU estimates?",
+      "unit": "per 100 people",
+      "scale": "linear",
+      "min": 0,
+      "max": 40,
+      "answer": 20,
+      "source": {
+        "name": "ITU",
+        "url": "https://www.itu.int/itu-d/reports/statistics/2025/10/15/ff25-subscriptions/",
+        "asOf": "2025"
+      },
+      "insight": "Fixed broadband has only just passed the 2006 peak of 19 fixed-telephone subscriptions per 100 people, and low-income countries still have less than one per 100."
+    },
+    {
+      "id": "q2",
+      "category": "energy",
+      "prompt": "What share of the world's total energy supply came from oil in 2025, according to the Energy Institute's Statistical Review of World Energy?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 33.5,
+      "source": {
+        "name": "Energy Institute (via Our World in Data)",
+        "url": "https://ourworldindata.org/grapher/oil-share-energy",
+        "asOf": "2025"
+      },
+      "insight": "Oil remains the single largest source of the world's energy supply."
+    },
+    {
+      "id": "q3",
+      "category": "health",
+      "prompt": "According to WHO, how many litres of pure alcohol did the average person aged 15+ drink worldwide per year in 2019?",
+      "unit": "litres per person",
+      "scale": "linear",
+      "min": 0,
+      "max": 20,
+      "answer": 5.5,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news/item/25-06-2024-over-3-million-annual-deaths-due-to-alcohol-and-drug-use-majority-among-men",
+        "asOf": "2019"
+      },
+      "insight": "Per capita consumption fell slightly from 5.7 litres in 2010."
+    },
+    {
+      "id": "q4",
+      "category": "society",
+      "prompt": "According to V-Dem's Regimes of the World classification, what share of the world's population lived in electoral or liberal democracies at the end of 2025?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 26,
+      "source": {
+        "name": "V-Dem Institute (Democracy Report 2026)",
+        "url": "https://www.v-dem.net/documents/75/V-Dem_Institute_Democracy_Report_2026_lowres.pdf",
+        "asOf": "2025"
+      },
+      "insight": "V-Dem finds more people live in closed autocracies (28%) than in electoral and liberal democracies combined (26%); only 7% live in liberal democracies."
+    },
+    {
+      "id": "q5",
+      "category": "economy",
+      "prompt": "What share of women aged 15 and over worldwide were in the labour force (working or actively looking for work) in 2025, according to ILO modelled estimates?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 60,
+      "answer": 48.9,
+      "source": {
+        "name": "ILO (via World Bank)",
+        "url": "https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS",
+        "asOf": "2025"
+      },
+      "insight": "For men the rate is 73.1%, a gap of roughly 24 percentage points."
+    }
+  ]
+}

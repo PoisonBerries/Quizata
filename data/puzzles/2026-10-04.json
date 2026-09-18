@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-04",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "demographics",
+      "prompt": "By demographers' estimates, roughly how many people have ever been born on Earth (counting everyone who has ever lived, up to 2022)?",
+      "unit": "billion people",
+      "scale": "linear",
+      "min": 10,
+      "max": 500,
+      "answer": 117,
+      "source": {
+        "name": "Population Reference Bureau",
+        "url": "https://www.prb.org/articles/how-many-people-have-ever-lived-on-earth/",
+        "asOf": "2022"
+      },
+      "insight": "The Population Reference Bureau estimates that today's roughly 8 billion people are only about 6.8 percent of everyone who has ever been born."
+    },
+    {
+      "id": "q2",
+      "category": "economy",
+      "prompt": "Trade in goods and services (exports plus imports) was equal to what percentage of world GDP in 2024, according to the World Bank?",
+      "unit": "% of GDP",
+      "scale": "linear",
+      "min": 0,
+      "max": 75,
+      "answer": 56.7,
+      "source": {
+        "name": "World Bank",
+        "url": "https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS",
+        "asOf": "2024"
+      },
+      "insight": "Exports of goods and services alone were 29.1% of world GDP in 2024."
+    },
+    {
+      "id": "q3",
+      "category": "science",
+      "prompt": "According to the Federation of American Scientists, roughly how many nuclear warheads existed worldwide (total inventory, including retired warheads awaiting dismantlement) at the start of 2026?",
+      "unit": "warheads",
+      "scale": "linear",
+      "min": 0,
+      "max": 20000,
+      "answer": 12187,
+      "source": {
+        "name": "Federation of American Scientists",
+        "url": "https://fas.org/initiative/status-world-nuclear-forces/",
+        "asOf": "2026"
+      },
+      "insight": "Russia and the United States together hold about 86 percent of the world's nuclear warhead inventory."
+    },
+    {
+      "id": "q4",
+      "category": "environment",
+      "prompt": "What was the Arctic sea ice extent at its annual minimum in September 2025, in millions of square kilometers, according to the US National Snow and Ice Data Center?",
+      "unit": "million km²",
+      "scale": "linear",
+      "min": 0,
+      "max": 10,
+      "answer": 4.6,
+      "source": {
+        "name": "NSIDC",
+        "url": "https://nsidc.org/sea-ice-today/analyses/2025-arctic-sea-ice-minimum-squeezes-ten-lowest-minimums",
+        "asOf": "2025"
+      },
+      "insight": "That is 1.62 million km² below the 1981-2010 average minimum, roughly the size of Alaska."
+    },
+    {
+      "id": "q5",
+      "category": "health",
+      "prompt": "How many human cases of Guinea worm disease (dracunculiasis) were reported worldwide in 2024?",
+      "unit": "cases",
+      "scale": "log",
+      "min": 8,
+      "max": 1500,
+      "answer": 15,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/publications/i/item/who-wer10020-21-165-191",
+        "asOf": "2024"
+      },
+      "insight": "Guinea worm cases have fallen from about 890,000 in 1989 to only 15 in 2024, all in Chad and South Sudan."
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-03",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "health",
+      "prompt": "According to WHO's Global Tuberculosis Report 2025, how many people worldwide died from tuberculosis in 2024 (including people with HIV)?",
+      "unit": "thousand deaths",
+      "scale": "log",
+      "min": 20,
+      "max": 2500,
+      "answer": 1230,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/tuberculosis",
+        "asOf": "2024"
+      },
+      "insight": "TB remains the world's leading cause of death from a single infectious agent."
+    },
+    {
+      "id": "q2",
+      "category": "economy",
+      "prompt": "What share of the world's population lived on less than $8.30 a day in 2024? (World Bank poverty line typical of upper-middle-income countries, in 2021 international dollars adjusted for price differences, PPP.)",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 75,
+      "answer": 46.1,
+      "source": {
+        "name": "World Bank",
+        "url": "https://data.worldbank.org/indicator/SI.POV.UMIC",
+        "asOf": "2024"
+      },
+      "insight": "That is roughly 3.75 billion people."
+    },
+    {
+      "id": "q3",
+      "category": "environment",
+      "prompt": "How many million tonnes of electronic waste (e-waste) were generated worldwide in 2022, according to the UN Global E-waste Monitor 2024?",
+      "unit": "million tonnes",
+      "scale": "linear",
+      "min": 0,
+      "max": 200,
+      "answer": 62,
+      "source": {
+        "name": "ITU / UNITAR (Global E-waste Monitor 2024)",
+        "url": "https://ewastemonitor.info/the-global-e-waste-monitor-2024/",
+        "asOf": "2022"
+      },
+      "insight": "E-waste generation is rising by about 2.6 million tonnes a year and is on track to reach 82 million tonnes by 2030."
+    },
+    {
+      "id": "q4",
+      "category": "society",
+      "prompt": "According to UNICEF, what share of young women aged 20 to 24 worldwide were married or in a union before their 18th birthday?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 19,
+      "source": {
+        "name": "UNICEF",
+        "url": "https://www.unicef.org/press-releases/global-polycrisis-creating-uphill-battle-end-child-marriage-unicef",
+        "asOf": "2022"
+      },
+      "insight": "UNICEF estimates about 640 million girls and women alive today were married in childhood, down from 21% to 19% over five years."
+    },
+    {
+      "id": "q5",
+      "category": "health",
+      "prompt": "According to UNAIDS and WHO estimates, how many people worldwide were living with HIV at the end of 2025?",
+      "unit": "million people",
+      "scale": "log",
+      "min": 7.5,
+      "max": 60,
+      "answer": 41,
+      "source": {
+        "name": "UNAIDS",
+        "url": "https://www.unaids.org/en/resources/fact-sheet",
+        "asOf": "2025"
+      },
+      "insight": "About 78% of all people living with HIV were accessing antiretroviral treatment at the end of 2025."
+    }
+  ]
+}

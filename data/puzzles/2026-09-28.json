@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-28",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "economy",
+      "prompt": "How many international tourist arrivals (overnight visitors) were recorded worldwide in 2025, in billions, according to UN Tourism?",
+      "unit": "billion arrivals",
+      "scale": "linear",
+      "min": 0,
+      "max": 5,
+      "answer": 1.52,
+      "source": {
+        "name": "UN Tourism",
+        "url": "https://www.untourism.int/news/international-tourist-arrivals-up-4-in-2025-reflecting-strong-travel-demand-around-the-world",
+        "asOf": "2025"
+      },
+      "insight": "Arrivals grew 4% in 2025, a new post-pandemic record year for international tourism."
+    },
+    {
+      "id": "q2",
+      "category": "environment",
+      "prompt": "In 2022, what share of the world's total land area was agricultural land (cropland plus permanent meadows and pastures)?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 37,
+      "source": {
+        "name": "FAO",
+        "url": "https://www.fao.org/statistics/highlights-archive/highlights-detail/land-statistics-2001-2022.-global--regional-and-country-trends/en",
+        "asOf": "2022"
+      },
+      "insight": "Of 4,781 million hectares of farmland in 2022, pasture (3,208 million) covered about twice as much land as cropland (1,573 million)."
+    },
+    {
+      "id": "q3",
+      "category": "society",
+      "prompt": "According to UNHCR, how many people worldwide were forcibly displaced (refugees, asylum-seekers, internally displaced and others in need of international protection) at the end of 2025?",
+      "unit": "million people",
+      "scale": "linear",
+      "min": 0,
+      "max": 150,
+      "answer": 117.8,
+      "source": {
+        "name": "UNHCR",
+        "url": "https://www.unhcr.org/global-trends",
+        "asOf": "2025"
+      },
+      "insight": "That is about one in 70 people worldwide, and UNHCR reports the first annual decline in forced displacement in a decade."
+    },
+    {
+      "id": "q4",
+      "category": "health",
+      "prompt": "According to WHO's cancer agency IARC (GLOBOCAN 2022), how many people worldwide died of cancer in 2022?",
+      "unit": "million deaths",
+      "scale": "linear",
+      "min": 0,
+      "max": 20,
+      "answer": 9.7,
+      "source": {
+        "name": "WHO / IARC",
+        "url": "https://www.who.int/news/item/01-02-2024-global-cancer-burden-growing--amidst-mounting-need-for-services",
+        "asOf": "2022"
+      },
+      "insight": "About 20 million new cancer cases were diagnosed worldwide that year."
+    },
+    {
+      "id": "q5",
+      "category": "society",
+      "prompt": "According to ILO, Walk Free and IOM, how many people were living in modern slavery (forced labour or forced marriage) on any given day in 2021?",
+      "unit": "million people",
+      "scale": "linear",
+      "min": 0,
+      "max": 250,
+      "answer": 50,
+      "source": {
+        "name": "ILO, Walk Free and IOM",
+        "url": "https://www.ilo.org/resource/news/50-million-people-worldwide-modern-slavery-0",
+        "asOf": "2021"
+      },
+      "insight": "The estimate is 28 million in forced labour and 22 million in forced marriage, up 10 million people since 2016."
+    }
+  ]
+}

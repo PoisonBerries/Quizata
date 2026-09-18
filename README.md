@@ -18,7 +18,7 @@ then open `http://localhost:8080/index.html`. Use `?date=YYYY-MM-DD` to preview 
 2. Add that date to the `dates` array in `data/manifest.json`.
 3. Run `npm run validate` (also runs automatically in CI on push/PR) to catch schema issues before they ship.
 
-Every stat must cite a real, reputable, primary source — no number ships without one. See [about.html](about.html) for the full sourcing standard.
+Every stat must cite a real, reputable, primary source — no number ships without one — and a day's five questions must draw on at least 3 different publishers (`npm run validate` enforces it), so no single organization's framing dominates a day. See [about.html](about.html) for the full sourcing standard.
 
 ### Question schema
 

@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-24",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "health",
+      "prompt": "According to WHO's World Malaria Report 2025, how many people worldwide died of malaria in 2024 (estimate)?",
+      "unit": "thousand deaths",
+      "scale": "log",
+      "min": 30,
+      "max": 1000,
+      "answer": 610,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "asOf": "2024"
+      },
+      "insight": "About 95% of malaria deaths in 2024 occurred in the WHO African Region."
+    },
+    {
+      "id": "q2",
+      "category": "education",
+      "prompt": "Around 1820, by historians' estimates, what share of the world's adults (aged 15 and over) could read and write?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 12,
+      "source": {
+        "name": "OECD (via Our World in Data)",
+        "url": "https://ourworldindata.org/grapher/cross-country-literacy-rates",
+        "asOf": "1820"
+      },
+      "insight": "Two centuries ago only about one in ten adults could read; today the global figure is roughly 87 percent."
+    },
+    {
+      "id": "q3",
+      "category": "science",
+      "prompt": "According to the US National Human Genome Research Institute's tracking of sequencing costs, roughly how many US dollars did it cost to sequence one human genome in 2022?",
+      "unit": "dollars",
+      "scale": "log",
+      "min": 50,
+      "max": 10000,
+      "answer": 525,
+      "source": {
+        "name": "NIH NHGRI",
+        "url": "https://www.genome.gov/about-genomics/fact-sheets/DNA-Sequencing-Costs-Data",
+        "asOf": "2022"
+      },
+      "insight": "In 2001 the same tracking put the cost near $95 million per genome, roughly 180,000 times more than in 2022."
+    },
+    {
+      "id": "q4",
+      "category": "environment",
+      "prompt": "Of all the fresh water on Earth, what percentage is locked up in ice caps, glaciers and permanent snow?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 80,
+      "answer": 68.7,
+      "source": {
+        "name": "USGS",
+        "url": "https://www.usgs.gov/water-science-school/science/how-much-water-there-earth",
+        "asOf": "2024"
+      },
+      "insight": "Oceans hold about 96.5 percent of all Earth's water, so fresh water is a small slice, and most of it is frozen."
+    },
+    {
+      "id": "q5",
+      "category": "health",
+      "prompt": "According to the UNICEF/WHO/World Bank Joint Child Malnutrition Estimates, what share of children under 5 worldwide were stunted (too short for their age) in 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 23.2,
+      "source": {
+        "name": "UNICEF/WHO/World Bank (Joint Child Malnutrition Estimates)",
+        "url": "https://www.who.int/teams/nutrition-and-food-safety/monitoring-nutritional-status-and-food-safety-and-events/joint-child-malnutrition-estimates/latest-estimates",
+        "asOf": "2024"
+      },
+      "insight": "That is about 150 million children under 5 who were stunted."
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-26",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "energy",
+      "prompt": "How much solar power capacity (photovoltaic and concentrated solar) was installed worldwide at the end of 2025, in gigawatts, according to IRENA?",
+      "unit": "GW",
+      "scale": "linear",
+      "min": 0,
+      "max": 5000,
+      "answer": 2392,
+      "source": {
+        "name": "IRENA",
+        "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2026/Mar/IRENA_DAT_RE_capacity_highlights_2026.pdf",
+        "asOf": "2025"
+      },
+      "insight": "Solar is the largest renewable source, and 2025 saw record additions of 511 GW, about 27% growth in a single year."
+    },
+    {
+      "id": "q2",
+      "category": "environment",
+      "prompt": "What share of the world's e-waste generated in 2022 was documented as formally collected and recycled in an environmentally sound manner, according to the UN Global E-waste Monitor 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 22.3,
+      "source": {
+        "name": "ITU / UNITAR (Global E-waste Monitor 2024)",
+        "url": "https://ewastemonitor.info/the-global-e-waste-monitor-2024/",
+        "asOf": "2022"
+      },
+      "insight": "Since 2010, e-waste generation has grown almost five times faster than documented formal collection and recycling."
+    },
+    {
+      "id": "q3",
+      "category": "science",
+      "prompt": "How many million science and engineering (S&E) journal articles were published worldwide in 2022, according to the US National Science Foundation (Scopus data)?",
+      "unit": "million articles",
+      "scale": "linear",
+      "min": 0,
+      "max": 5,
+      "answer": 3.3,
+      "source": {
+        "name": "US National Science Foundation (NCSES)",
+        "url": "https://ncses.nsf.gov/pubs/nsb202333/publication-output-by-region-country-or-economy-and-by-scientific-field",
+        "asOf": "2022"
+      },
+      "insight": "China and India together accounted for more than half of the growth in global output between 2010 and 2022."
+    },
+    {
+      "id": "q4",
+      "category": "science",
+      "prompt": "In constant 2021 US dollars, what is the CSIS Aerospace Security Project's estimate of the cost per kilogram of payload to low Earth orbit for a SpaceX Falcon 9 as first flown in 2010 (dedicated launch, based on unit flyaway cost)?",
+      "unit": "dollars per kg",
+      "scale": "log",
+      "min": 1500,
+      "max": 50000,
+      "answer": 2600,
+      "source": {
+        "name": "CSIS Aerospace Security Project (via Our World in Data)",
+        "url": "https://ourworldindata.org/grapher/cost-space-launches-low-earth-orbit",
+        "asOf": "2010"
+      },
+      "insight": "On the same basis, the Space Shuttle cost about $65,400 per kilogram to low Earth orbit."
+    },
+    {
+      "id": "q5",
+      "category": "health",
+      "prompt": "According to WHO's global tobacco trends report, how many people worldwide used tobacco in 2024?",
+      "unit": "billion people",
+      "scale": "log",
+      "min": 0.1,
+      "max": 2,
+      "answer": 1.2,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news/item/06-10-2025-who-tobacco-trends-report-1-in-5-adults-still-addicted-to-tobacco",
+        "asOf": "2024"
+      },
+      "insight": "The number of tobacco users has dropped from 1.38 billion in 2000."
+    }
+  ]
+}

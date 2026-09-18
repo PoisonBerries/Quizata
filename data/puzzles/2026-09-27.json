@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-27",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "economy",
+      "prompt": "How many children aged 5 to 17 worldwide were engaged in child labour in 2024, according to ILO and UNICEF estimates?",
+      "unit": "million children",
+      "scale": "linear",
+      "min": 0,
+      "max": 300,
+      "answer": 138,
+      "source": {
+        "name": "ILO and UNICEF",
+        "url": "https://www.unicef.org/press-releases/despite-progress-child-labour-still-affects-138-million-children-globally-ilo-unicef",
+        "asOf": "2024"
+      },
+      "insight": "Child labour has fallen by over 20 million children since 2020, reversing an increase between 2016 and 2020."
+    },
+    {
+      "id": "q2",
+      "category": "technology",
+      "prompt": "According to the IEA, what share of global electricity consumption was used by data centres in 2024?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 10,
+      "answer": 1.5,
+      "source": {
+        "name": "IEA",
+        "url": "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
+        "asOf": "2024"
+      },
+      "insight": "Data-centre electricity use has grown by about 12% a year over the past five years."
+    },
+    {
+      "id": "q3",
+      "category": "health",
+      "prompt": "According to the WHO/World Bank 2025 UHC Global Monitoring Report, how many people worldwide still lacked coverage for essential health services as of 2023?",
+      "unit": "billion people",
+      "scale": "linear",
+      "min": 0,
+      "max": 6,
+      "answer": 4.6,
+      "source": {
+        "name": "WHO / World Bank",
+        "url": "https://www.who.int/teams/health-financing-and-economics/global-monitoring-report/2025",
+        "asOf": "2023"
+      },
+      "insight": "In 2022, 2.1 billion people also experienced financial hardship from out-of-pocket health spending."
+    },
+    {
+      "id": "q4",
+      "category": "science",
+      "prompt": "On average since about 1900, how many earthquakes of magnitude 7.0 or greater occur worldwide in a typical year?",
+      "unit": "earthquakes per year",
+      "scale": "log",
+      "min": 10,
+      "max": 500,
+      "answer": 16,
+      "source": {
+        "name": "USGS",
+        "url": "https://www.usgs.gov/faqs/why-are-we-having-so-many-or-so-few-earthquakes-has-naturally-occurring-earthquake-activity",
+        "asOf": "1900-2020"
+      },
+      "insight": "USGS expects about 16 major earthquakes a year, including 15 in the magnitude 7 range and one of magnitude 8.0 or greater."
+    },
+    {
+      "id": "q5",
+      "category": "economy",
+      "prompt": "In 1870, on average, how many hours per year did a full-time non-agricultural production worker in Germany work, by historians' estimates?",
+      "unit": "hours per year",
+      "scale": "linear",
+      "min": 1000,
+      "max": 4000,
+      "answer": 3284,
+      "source": {
+        "name": "Huberman & Minns (via Our World in Data)",
+        "url": "https://ourworldindata.org/grapher/annual-working-hours-per-worker",
+        "asOf": "1870"
+      },
+      "insight": "Working time has fallen sharply since: the average German worker put in about 1,335 hours in 2023, though that figure covers all workers, part-timers included."
+    }
+  ]
+}

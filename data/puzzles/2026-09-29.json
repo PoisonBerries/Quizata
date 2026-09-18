@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-29",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "economy",
+      "prompt": "What was world GDP per person in 2024, in dollars? (Adjusted for price differences between countries, PPP, in constant 2021 international dollars, per the World Bank.)",
+      "unit": "dollars per person",
+      "scale": "linear",
+      "min": 0,
+      "max": 40000,
+      "answer": 21393,
+      "source": {
+        "name": "World Bank",
+        "url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD",
+        "asOf": "2024"
+      },
+      "insight": "Measured at market exchange rates in current US dollars, world GDP per person was only about $13,700 in 2024."
+    },
+    {
+      "id": "q2",
+      "category": "health",
+      "prompt": "Around the year 1800, by historians' estimates, what share of the world's children died before reaching their fifth birthday?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 42.8,
+      "source": {
+        "name": "Gapminder (via Our World in Data)",
+        "url": "https://ourworldindata.org/grapher/global-child-mortality-timeseries",
+        "asOf": "1800"
+      },
+      "insight": "Through at least 1800, more than one in three children failed to reach age five, according to Our World in Data."
+    },
+    {
+      "id": "q3",
+      "category": "society",
+      "prompt": "According to UNODC estimates, what was the global intentional homicide rate in 2024, in killings per 100,000 people?",
+      "unit": "per 100,000",
+      "scale": "linear",
+      "min": 0,
+      "max": 20,
+      "answer": 5.1,
+      "source": {
+        "name": "UNODC (via UN Sustainable Development Goals Report 2026)",
+        "url": "https://unstats.un.org/sdgs/report/2026/Goal-16/",
+        "asOf": "2024"
+      },
+      "insight": "The global rate has fallen from 5.9 per 100,000 in 2015, according to UNODC data reported in the UN SDG report."
+    },
+    {
+      "id": "q4",
+      "category": "health",
+      "prompt": "According to WHO, smallpox killed an estimated how many people in the 20th century alone, before its eradication?",
+      "unit": "million people",
+      "scale": "linear",
+      "min": 0,
+      "max": 1000,
+      "answer": 300,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news/item/13-12-2019-who-commemorates-the-40th-anniversary-of-smallpox-eradication",
+        "asOf": "1900-1979"
+      },
+      "insight": "Before it was wiped out, smallpox had plagued humanity for at least 3,000 years."
+    },
+    {
+      "id": "q5",
+      "category": "environment",
+      "prompt": "What was the average concentration of carbon dioxide in the atmosphere at Mauna Loa Observatory, Hawaii, in 2025 (annual mean, in parts per million), according to NOAA?",
+      "unit": "ppm",
+      "scale": "linear",
+      "min": 350,
+      "max": 450,
+      "answer": 427.4,
+      "source": {
+        "name": "NOAA",
+        "url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt",
+        "asOf": "2025"
+      },
+      "insight": "The 2025 annual mean was about 2.7 ppm higher than 2024's 424.6 ppm."
+    }
+  ]
+}

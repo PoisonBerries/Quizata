@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-02",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "energy",
+      "prompt": "How much wind power capacity was installed worldwide at the end of 2025, in gigawatts, according to IRENA?",
+      "unit": "GW",
+      "scale": "linear",
+      "min": 0,
+      "max": 2000,
+      "answer": 1291,
+      "source": {
+        "name": "IRENA",
+        "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2026/Mar/IRENA_DAT_RE_capacity_highlights_2026.pdf",
+        "asOf": "2025"
+      },
+      "insight": "Wind added 159 GW in 2025, growing 14.0% in a single year."
+    },
+    {
+      "id": "q2",
+      "category": "economy",
+      "prompt": "Worldwide, general government gross debt was what percentage of world GDP in 2024, according to the IMF's Global Debt Database (weighted average across countries)?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 250,
+      "answer": 93,
+      "source": {
+        "name": "IMF",
+        "url": "https://www.imf.org/external/datamapper/GDD/2025%20Global%20Debt%20Monitor.pdf",
+        "asOf": "2024"
+      },
+      "insight": "Global public debt was 84% of world GDP in 2019, before rising to 93% in 2024."
+    },
+    {
+      "id": "q3",
+      "category": "society",
+      "prompt": "According to Amnesty International, how many countries had abolished the death penalty for all crimes at the end of 2025?",
+      "unit": "countries",
+      "scale": "linear",
+      "min": 0,
+      "max": 150,
+      "answer": 113,
+      "source": {
+        "name": "Amnesty International",
+        "url": "https://www.amnesty.org/en/latest/news/2026/05/death-penalty-in-2025-facts-and-figures/",
+        "asOf": "2025"
+      },
+      "insight": "Counting countries that have abolished it in law or in practice, Amnesty reports 145 in total."
+    },
+    {
+      "id": "q4",
+      "category": "economy",
+      "prompt": "What was the global unemployment rate in 2025, according to the ILO's Employment and Social Trends 2026 report? (Share of the world's labour force aged 15+ that is without work but actively seeking it.)",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 40,
+      "answer": 4.9,
+      "source": {
+        "name": "ILO",
+        "url": "https://www.ilo.org/publications/flagship-reports/employment-and-social-trends-2026",
+        "asOf": "2025"
+      },
+      "insight": "Headline unemployment is low and stable, but youth unemployment is far higher, at 12.4% in 2025."
+    },
+    {
+      "id": "q5",
+      "category": "health",
+      "prompt": "According to the UN's State of Food Security and Nutrition report (FAO estimates), what share of the world's population was undernourished (chronically lacking enough food energy) in 2025?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 60,
+      "answer": 7.8,
+      "source": {
+        "name": "FAO, IFAD, UNICEF, WFP and WHO (SOFI 2026)",
+        "url": "https://www.fao.org/newsroom/detail/sofi-2026--hunger-not-inevitable--fao-says-as-global-hunger-report-shows-progress/en",
+        "asOf": "2025"
+      },
+      "insight": "That is about 645 million people, nearly 14 million fewer than in 2024."
+    }
+  ]
+}

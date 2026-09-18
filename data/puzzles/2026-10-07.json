@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-07",
+  "questions": [
+    {
+      "id": "q1",
+      "category": "environment",
+      "prompt": "How many kilograms of food did the world waste per person in 2022 (at household, food service and retail level, including inedible parts), according to UNEP's Food Waste Index Report 2024?",
+      "unit": "kg per person",
+      "scale": "linear",
+      "min": 0,
+      "max": 400,
+      "answer": 132,
+      "source": {
+        "name": "UNEP",
+        "url": "https://www.unep.org/news-and-stories/press-release/world-squanders-over-1-billion-meals-day-un-report",
+        "asOf": "2022"
+      },
+      "insight": "Households were responsible for 60% of that waste, and nearly one-fifth of all food available to consumers was wasted."
+    },
+    {
+      "id": "q2",
+      "category": "health",
+      "prompt": "According to WHO, what share of all deaths worldwide in 2022 were caused by cardiovascular diseases (heart disease, stroke and related conditions)?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 32,
+      "source": {
+        "name": "WHO",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)",
+        "asOf": "2022"
+      },
+      "insight": "About 85% of cardiovascular deaths were due to heart attack and stroke."
+    },
+    {
+      "id": "q3",
+      "category": "society",
+      "prompt": "As of early 2026 (UN Women report, 1 January 2026 data), in how many countries was the head of state or head of government a woman, according to the Inter-Parliamentary Union and UN Women?",
+      "unit": "countries",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 28,
+      "source": {
+        "name": "Inter-Parliamentary Union and UN Women",
+        "url": "https://www.unwomen.org/en/digital-library/publications/2026/03/women-in-politics-2026",
+        "asOf": "2026"
+      },
+      "insight": "That is only about one country in seven, and women hold 22.4% of cabinet posts worldwide."
+    },
+    {
+      "id": "q4",
+      "category": "society",
+      "prompt": "According to UNICEF, what share of children under age 5 worldwide had their birth registered, based on the latest global estimate (data collected 2014 to 2023)?",
+      "unit": "%",
+      "scale": "linear",
+      "min": 0,
+      "max": 100,
+      "answer": 77,
+      "source": {
+        "name": "UNICEF",
+        "url": "https://www.unicef.org/press-releases/birth-registration-steadily-increases-worldwide-150-million-children-still-invisible",
+        "asOf": "2014-2023"
+      },
+      "insight": "About 150 million children under five remain unregistered, and more than half of them live in sub-Saharan Africa."
+    },
+    {
+      "id": "q5",
+      "category": "demographics",
+      "prompt": "According to UN DESA's World Urbanization Prospects 2025, roughly how many million people lived in the world's most populous city in 2025?",
+      "unit": "million people",
+      "scale": "linear",
+      "min": 0,
+      "max": 50,
+      "answer": 42,
+      "source": {
+        "name": "UN DESA",
+        "url": "https://www.un.org/en/desa/WUP-2025",
+        "asOf": "2025"
+      },
+      "insight": "Jakarta, not Tokyo, now ranks first, while Tokyo is third with about 33 million residents."
+    }
+  ]
+}
