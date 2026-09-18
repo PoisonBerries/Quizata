@@ -51,11 +51,11 @@ This is a static site with no build step, so Pages can serve it directly from th
 
 ## Scoring and power-ups
 
-Each question's final score is half accuracy (distance from the real answer) and half how you compare to everyone else who answered it that day (a percentile from the crowd backend below), capped lower if you used a power-up on that question. See [about.html](about.html) for the player-facing explanation. The math lives in `js/scoring.js` (`scoreQuestion`, `combineScore`) and `js/powerups.js` (narrow-range and second-guess helpers) — both are plain functions with no DOM dependency.
+Each question's final score is half accuracy and half how you compare to the crowd's average accuracy that day (from the crowd backend below), capped lower if you used a power-up on that question. Accuracy is `100 × (1 − miss ÷ 0.6)²`, floored at 0, where miss is the distance from the answer as a fraction of the slider's range. If you change that curve, bump `SCORING_VERSION` in `js/scoring.js` — crowd stats are stored per version so old-curve scores never get averaged against new-curve ones. See [about.html](about.html) for the player-facing explanation. The math lives in `js/scoring.js` (`scoreQuestion`, `combineScore`) and `js/powerups.js` (narrow-range and second-guess helpers) — both are plain functions with no DOM dependency.
 
 ## Crowd backend (Firestore)
 
-`js/crowd.js` records an aggregate-only per-question stat (`count`, `scoreSum`, a 20-bucket score histogram — never individual guesses) to Firebase Firestore, and returns the submitting player's percentile. It's written to fail soft: with `js/firebase-config.js` left at its placeholder values, or if the network call fails or times out, every question just scores on accuracy alone and the game plays normally.
+`js/crowd.js` records an aggregate-only per-question stat (`count`, `scoreSum`, `valueSum`, a 20-bucket score histogram — never individual guesses) to Firebase Firestore, in documents named `<questionId>_s<SCORING_VERSION>`, and returns the crowd's average accuracy comparison plus average guess. It's written to fail soft: with `js/firebase-config.js` left at its placeholder values, or if the network call fails or times out, every question just scores on accuracy alone and the game plays normally.
 
 To turn it on:
 

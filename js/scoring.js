@@ -28,13 +28,26 @@ export function valueToSliderPosition(question, value, sliderMax) {
   return Math.round(Math.min(1, Math.max(0, t)) * sliderMax);
 }
 
-// 0-100 per question, based on normalized distance on the question's own scale.
+// Bump whenever scoreQuestion's curve changes. Crowd stats are stored per scoring version
+// (see crowd.js) so scores from one curve are never averaged against another's.
+export const SCORING_VERSION = 2;
+
+// A miss this large (as a fraction of the slider's range) scores 0.
+export const ACCURACY_ZERO_AT = 0.6;
+
+// 0-100 per question. "Miss" is the distance from the answer as a fraction of the
+// slider's range, measured on the question's own scale (log for log questions).
+// Accuracy is linear closeness, squared: small misses cost a little, bigger ones cost
+// disproportionately more, and anything ACCURACY_ZERO_AT or further away is worth 0.
+// A plain linear falloff was too generous — locking the default midpoint on every
+// question, without touching the slider, landed a "Sharp Eye" day.
 export function scoreQuestion(question, guess) {
   const { lo, hi } = questionBounds(question);
   const g = question.scale === "log" ? Math.log10(Math.max(guess, question.min > 0 ? question.min : LOG_FLOOR)) : guess;
   const a = question.scale === "log" ? Math.log10(question.answer) : question.answer;
-  const dist = Math.abs(g - a) / (hi - lo);
-  return Math.round(Math.max(0, 100 * (1 - dist)));
+  const miss = Math.abs(g - a) / (hi - lo);
+  const closeness = Math.max(0, 1 - miss / ACCURACY_ZERO_AT);
+  return Math.round(100 * closeness * closeness);
 }
 
 // Half accuracy, half how you compare to the crowd's average accuracy on this question

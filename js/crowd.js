@@ -22,6 +22,7 @@
 // this game is built to avoid.
 
 import { firebaseConfig, isConfigured } from "./firebase-config.js";
+import { SCORING_VERSION } from "./scoring.js";
 
 const FIREBASE_SDK_VERSION = "12.19.0";
 const FIREBASE_TIMEOUT_MS = 3000;
@@ -84,7 +85,10 @@ async function doSubmit(date, questionId, accuracyScore, guessValue) {
   const fb = await loadFirebase();
   if (!fb) return UNAVAILABLE;
   const { db, doc, runTransaction, increment } = fb;
-  const ref = doc(db, "dailyStats", date, "questions", questionId);
+  // Keyed by scoring version: scoreSum only means something against scores from the same
+  // accuracy curve, so a curve change starts fresh documents instead of mixing scales.
+  // (The security rules' {questionId} wildcard accepts this without changes.)
+  const ref = doc(db, "dailyStats", date, "questions", `${questionId}_s${SCORING_VERSION}`);
   const myBucket = bucketFor(accuracyScore);
 
   return runTransaction(db, async (tx) => {
