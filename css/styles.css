@@ -467,8 +467,16 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* Summary screen */
+/* These are <p>s inside a flex "stack", which already spaces its children with gap — so
+   their default margins (1em, and this is a 3rem font) just stacked huge dead space on top. */
+#summary-screen {
+  gap: 1rem;
+}
+
 .score-total {
   font-size: clamp(2.4rem, 10vw, 3.2rem);
+  line-height: 1.1;
+  margin: 0;
   text-align: center;
 }
 
@@ -477,6 +485,7 @@ input[type="range"]::-moz-range-thumb {
   font-weight: 600;
   color: var(--accent);
   font-size: 1.05rem;
+  margin: 0;
 }
 
 .breakdown-list {
@@ -485,7 +494,7 @@ input[type="range"]::-moz-range-thumb {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.45rem;
 }
 
 .breakdown-list li {
@@ -494,7 +503,7 @@ input[type="range"]::-moz-range-thumb {
   align-items: center;
   gap: 0.75rem;
   font-size: 0.92rem;
-  padding: 0.6rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   background: var(--surface-raised);
   border-radius: 10px;
   border: 1px solid var(--border);
