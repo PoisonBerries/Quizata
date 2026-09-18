@@ -112,6 +112,7 @@
       </div>
       <div class="btn-row">
         <button class="btn" id="share-btn">Share result</button>
+        <button class="btn btn-secondary" id="stats-btn" type="button">Your stats</button>
         <a class="btn btn-secondary" href="about.html">Why these stats?</a>
       </div>
     </section>
@@ -120,6 +121,16 @@
   <footer>
     Quizata helps you calibrate your sense of the world, five numbers at a time. <a href="about.html">About &amp; sourcing</a>
   </footer>
+
+  <dialog id="stats-dialog" class="stats-dialog" aria-labelledby="stats-title">
+    <div class="stats-inner">
+      <div class="stats-header">
+        <h2 id="stats-title">Your stats</h2>
+        <button class="stats-close" id="stats-close" type="button" aria-label="Close">&times;</button>
+      </div>
+      <div id="stats-body"></div>
+    </div>
+  </dialog>
 
   <script type="module" src="js/main.js"></script>
 </body>

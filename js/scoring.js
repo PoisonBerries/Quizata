@@ -56,17 +56,34 @@ export function finalScoreOf(guess) {
   return guess.finalScore ?? guess.score ?? 0;
 }
 
+// Daily-total tiers, highest first. Exported so the stats screen buckets scores with the
+// exact same thresholds the results screen labels them with.
+export const MAX_DAILY_SCORE = 500;
+export const TIERS = [
+  { name: "Reality Master", min: 450 },
+  { name: "Sharp Eye", min: 350 },
+  { name: "Well Calibrated", min: 250 },
+  { name: "Getting There", min: 150 },
+  { name: "Keep Guessing", min: 0 },
+];
+
 export function tierForScore(totalScore) {
-  if (totalScore >= 450) return "Reality Master";
-  if (totalScore >= 350) return "Sharp Eye";
-  if (totalScore >= 250) return "Well Calibrated";
-  if (totalScore >= 150) return "Getting There";
-  return "Keep Guessing";
+  return (TIERS.find((t) => totalScore >= t.min) ?? TIERS[TIERS.length - 1]).name;
+}
+
+// Per-question score bands, best first. "key" names the matching --good/--ok/--meh/--bad
+// color in styles.css; "emoji" is what the share grid uses.
+export const BANDS = [
+  { key: "good", min: 90, emoji: "🟩" },
+  { key: "ok", min: 70, emoji: "🟨" },
+  { key: "meh", min: 40, emoji: "🟧" },
+  { key: "bad", min: 0, emoji: "🟥" },
+];
+
+export function bandForScore(score) {
+  return BANDS.find((b) => score >= b.min) ?? BANDS[BANDS.length - 1];
 }
 
 export function emojiForQuestionScore(score) {
-  if (score >= 90) return "🟩";
-  if (score >= 70) return "🟨";
-  if (score >= 40) return "🟧";
-  return "🟥";
+  return bandForScore(score).emoji;
 }

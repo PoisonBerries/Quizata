@@ -4,6 +4,7 @@ import { runGame, computeTotal } from "./game.js";
 import { emojiForQuestionScore, finalScoreOf } from "./scoring.js";
 import { formatValue } from "./format.js";
 import { buildShareText, copyShareText } from "./share.js";
+import { openStatsDialog } from "./statsView.js";
 
 const screens = {
   intro: document.getElementById("intro-screen"),
@@ -72,6 +73,8 @@ function renderSummary(puzzle, guesses, actualDate) {
     const ok = await copyShareText(text);
     showToast(ok ? "Copied to clipboard!" : "Couldn't copy — try again");
   };
+
+  document.getElementById("stats-btn").onclick = () => openStatsDialog({ highlightDate: actualDate });
 
   showOnly("summary");
   updateStreakBadge();
